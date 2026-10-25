@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, AlertTriangle, Eye, EyeOff, Building2, ShieldCheck } from 'lucide-react';
 import api from '@/api/axiosInstance';
+import { getApiErrorMessage } from '@/lib/utils';
 
 interface LoginFormData {
   org_email: string;
@@ -36,12 +37,8 @@ export default function Login() {
         password: formData.password,
       });
       navigate('/dashboard', { replace: true });
-    } catch (err: any) {
-      setError(
-        err.response?.data?.errorMessage ||
-          err.response?.data?.message ||
-          'Login failed. Please try again.'
-      );
+    } catch (err) {
+      setError(getApiErrorMessage(err, 'Login failed. Please try again.'));
     } finally {
       setLoading(false);
     }
@@ -50,23 +47,23 @@ export default function Login() {
   return (
     <div className="flex min-h-screen bg-slate-50 font-sans">
       {/* Left Branding Panel - centered, neat */}
-      <div className="hidden md:flex w-1/3 bg-blue-600 p-10 flex-col justify-center items-center text-center">
+      <div className="hidden md:flex w-1/3 bg-indigo-700 border-r border-indigo-800 p-10 flex-col justify-center items-center text-center">
         <div className="inline-flex items-center justify-center gap-2.5 mb-8">
-          <div className="w-11 h-11 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/10">
+          <div className="w-11 h-11 bg-indigo-500 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-900/30">
             <Building2 className="w-6 h-6 text-white" />
           </div>
           <span className="text-white text-2xl font-bold tracking-tight">ERP Core</span>
         </div>
         <h2 className="text-white text-3xl font-bold mb-4">Welcome back</h2>
-        <p className="text-blue-100 text-sm max-w-xs leading-relaxed mb-8">
+        <p className="text-indigo-100 text-sm max-w-xs leading-relaxed mb-8">
           Sign in to your organization account to manage products, inventory,
           customers, suppliers, purchases, and sales.
         </p>
-        <div className="inline-flex items-center justify-center gap-2.5 text-blue-100/90 text-xs font-medium">
-          <ShieldCheck className="w-4 h-4" />
+        <div className="inline-flex items-center justify-center gap-2.5 text-indigo-100/90 text-xs font-medium">
+          <ShieldCheck className="w-4 h-4 text-indigo-200" />
           <span>Secure organization-centric access</span>
         </div>
-        <div className="mt-12 text-blue-200 text-[10px] font-medium uppercase tracking-wider opacity-90">
+        <div className="mt-12 text-indigo-200 text-[10px] font-medium uppercase tracking-wider opacity-90">
           ERP Core v0.0.1
         </div>
       </div>
@@ -76,7 +73,7 @@ export default function Login() {
         <div className="w-full max-w-md">
           <div className="mx-auto mb-10">
             <div className="flex items-center justify-center gap-2.5 mb-4">
-              <div className="w-9 h-9 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-900/20">
+              <div className="w-9 h-9 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-900/20">
                 <Building2 className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold text-slate-900 tracking-tight">ERP Core</span>
@@ -149,7 +146,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -164,7 +161,7 @@ export default function Login() {
 
             <p className="text-xs text-slate-500 text-center mt-2">
               Don't have an account?{' '}
-              <a href="#" className="text-blue-600 hover:text-blue-700 font-medium">
+              <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">
                 Contact administrator
               </a>
             </p>
