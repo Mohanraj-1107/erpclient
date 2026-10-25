@@ -1,13 +1,16 @@
-import { AlertTriangle, Loader2 } from 'lucide-react';
+import { useEffect, useRef, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
+import { AlertTriangle, Loader2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface ConfirmDialogProps {
   open: boolean;
   title: string;
-  message: string;
+  message: ReactNode;
   confirmLabel?: string;
   cancelLabel?: string;
   loading?: boolean;
+  icon?: ReactNode;
   onConfirm: () => void;
   onCancel: () => void;
 }
@@ -18,34 +21,136 @@ export function ConfirmDialog({
   message,
   confirmLabel = 'Delete',
   cancelLabel = 'Cancel',
-  loading,
+  loading = false,
+  icon,
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const onCancelRef = useRef(onCancel);
+  const loadingRef = useRef(loading);
+
+  useEffect(() => {
+    onCancelRef.current = onCancel;
+    loadingRef.current = loading;
+  });
+
+  useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && !loadingRef.current) {
+        onCancelRef.current();
+        return;
+      }
+
+      if (event.key !== 'Tab' || !panelRef.current) return;
+
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
   if (!open) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+  return createPortal(
+    <div
+      role="presentation"
+      className="fixed inset-0 z-[120] flex items-center justify-center overflow-y-auto p-4 sm:p-6"
+    >
       <div
-        className="absolute inset-0 bg-slate-900/40 backdrop-blur-xs"
+        className="animate-overlay-in absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
         onClick={loading ? undefined : onCancel}
+        aria-hidden="true"
       />
-      <div className="relative w-full max-w-sm rounded-xl border border-slate-200 bg-white p-5 shadow-xl">
-        <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-red-50 text-red-600">
-          <AlertTriangle className="h-5 w-5" />
+
+      <div
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="confirm-dialog-title"
+        aria-describedby="confirm-dialog-description"
+        className="animate-dialog-in relative w-full max-w-sm overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl shadow-slate-300/40"
+      >
+        <div className="p-4 pr-10">
+          <div className="flex items-start gap-3">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-50 text-red-600 ring-1 ring-red-100">
+              {icon ?? <AlertTriangle className="h-4 w-4" />}
+            </div>
+
+            <div className="min-w-0 flex-1 pt-0.5">
+              <h3
+                id="confirm-dialog-title"
+                className="text-sm font-semibold text-slate-900"
+              >
+                {title}
+              </h3>
+              <p
+                id="confirm-dialog-description"
+                className="mt-1 text-xs leading-relaxed text-slate-500"
+              >
+                {message}
+              </p>
+            </div>
+          </div>
         </div>
-        <h3 className="text-sm font-bold text-slate-900">{title}</h3>
-        <p className="mt-1 text-xs leading-relaxed text-slate-500">{message}</p>
-        <div className="mt-5 flex justify-end gap-2">
-          <Button variant="outline" size="sm" onClick={onCancel} disabled={loading}>
+
+        <button
+          type="button"
+          onClick={onCancel}
+          disabled={loading}
+          aria-label="Close dialog"
+          className="absolute right-2 top-2 rounded-md border-0 p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-0 disabled:opacity-50"
+        >
+          <X className="h-3.5 w-3.5" />
+        </button>
+
+        <div className="flex flex-col-reverse gap-2 border-t border-slate-200/70 bg-slate-50/60 px-4 py-3 sm:flex-row sm:justify-end">
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={onCancel}
+            disabled={loading}
+            autoFocus
+          >
             {cancelLabel}
           </Button>
-          <Button variant="destructive" size="sm" onClick={onConfirm} disabled={loading}>
+          <Button
+            size="sm"
+            variant="destructive"
+            onClick={onConfirm}
+            disabled={loading}
+            className="gap-1.5"
+          >
             {loading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
             {confirmLabel}
           </Button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

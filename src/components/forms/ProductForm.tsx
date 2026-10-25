@@ -101,8 +101,8 @@ function FormSection({
   children: ReactNode;
 }) {
   return (
-    <section className="overflow-hidden rounded-xl border border-slate-200/80 bg-slate-100/80 shadow-xs backdrop-blur-sm">
-      <div className="flex items-start gap-3 border-b border-slate-200/60 bg-slate-200/70 px-4 py-3.5 sm:px-5">
+    <section className="rounded-xl border border-slate-200/80 bg-slate-100/80 shadow-xs">
+      <div className="flex items-start gap-3 rounded-t-xl border-b border-slate-200/60 bg-slate-200/70 px-4 py-3.5 sm:px-5">
         <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
           {icon}
         </div>
@@ -213,15 +213,14 @@ export function ProductForm({
             <Select
               id="unit"
               value={form.unit}
-              onChange={(event) => setField('unit', event.target.value as ProductUnit)}
+              onChange={(unit) => setField('unit', unit as ProductUnit)}
+              options={PRODUCT_UNITS.map((unit) => ({
+                value: unit,
+                label: UNIT_LABELS[unit],
+              }))}
               disabled={submitting}
-            >
-              {PRODUCT_UNITS.map((unit) => (
-                <option key={unit} value={unit}>
-                  {UNIT_LABELS[unit]}
-                </option>
-              ))}
-            </Select>
+              aria-invalid={Boolean(errors.unit)}
+            />
           </FormField>
         </div>
       </FormSection>

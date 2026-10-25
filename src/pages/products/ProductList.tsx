@@ -326,9 +326,18 @@ export default function ProductList() {
         open={pendingDelete !== null}
         title="Delete product"
         message={
-          pendingDelete
-            ? `Are you sure you want to delete "${pendingDelete.productName}"? This will also remove its inventory record. This action cannot be undone.`
-            : ''
+          pendingDelete ? (
+            <>
+              Are you sure you want to delete{' '}
+              <strong className="font-semibold text-slate-900">
+                {pendingDelete.productName}
+              </strong>
+              ? This will also remove its inventory record. This action cannot be
+              undone.
+            </>
+          ) : (
+            ''
+          )
         }
         loading={deleteMutation.isPending}
         onCancel={() => setPendingDelete(null)}

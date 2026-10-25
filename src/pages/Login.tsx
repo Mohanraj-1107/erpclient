@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, AlertTriangle, Eye, EyeOff, Building2, ShieldCheck } from 'lucide-react';
+import { Building2, Eye, EyeOff, Lock, Mail, ShieldCheck } from 'lucide-react';
 import api from '@/api/axiosInstance';
 import { getApiErrorMessage } from '@/lib/utils';
+import { Alert } from '@/components/common/Alert';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Spinner } from '@/components/ui/spinner';
 
 interface LoginFormData {
   org_email: string;
@@ -19,15 +23,13 @@ export default function Login() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
     setError('');
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
     setError('');
     setLoading(true);
 
@@ -46,59 +48,66 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen bg-slate-50 font-sans">
-      {/* Left Branding Panel - centered, neat */}
-      <div className="hidden md:flex w-1/3 bg-indigo-700 border-r border-indigo-800 p-10 flex-col justify-center items-center text-center">
-        <div className="inline-flex items-center justify-center gap-2.5 mb-8">
-          <div className="w-11 h-11 bg-indigo-500 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-900/30">
-            <Building2 className="w-6 h-6 text-white" />
+      {/* Left branding panel */}
+      <div className="hidden w-1/3 flex-col items-center justify-center border-r border-slate-200/60 bg-slate-200/70 p-10 text-center md:flex">
+        <div className="inline-flex items-center justify-center gap-2.5">
+          <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-indigo-600 text-white shadow-sm shadow-indigo-200">
+            <Building2 className="h-6 w-6" />
           </div>
-          <span className="text-white text-2xl font-bold tracking-tight">ERP Core</span>
+          <span className="text-2xl font-bold tracking-tight text-slate-900">
+            ERP Core
+          </span>
         </div>
-        <h2 className="text-white text-3xl font-bold mb-4">Welcome back</h2>
-        <p className="text-indigo-100 text-sm max-w-xs leading-relaxed mb-8">
+
+        <h2 className="mt-8 text-2xl font-bold tracking-tight text-slate-900">
+          Welcome back
+        </h2>
+        <p className="mt-3 max-w-xs text-sm leading-relaxed text-slate-600">
           Sign in to your organization account to manage products, inventory,
           customers, suppliers, purchases, and sales.
         </p>
-        <div className="inline-flex items-center justify-center gap-2.5 text-indigo-100/90 text-xs font-medium">
-          <ShieldCheck className="w-4 h-4 text-indigo-200" />
-          <span>Secure organization-centric access</span>
+
+        <div className="mt-8 inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200/70 bg-white/60 px-3 py-2 text-xs font-medium text-slate-600">
+          <ShieldCheck className="h-4 w-4 text-indigo-600" />
+          Secure organization-centric access
         </div>
-        <div className="mt-12 text-indigo-200 text-[10px] font-medium uppercase tracking-wider opacity-90">
+
+        <p className="mt-12 text-[10px] font-medium uppercase tracking-wider text-slate-500">
           ERP Core v0.0.1
-        </div>
+        </p>
       </div>
 
-      {/* Right Login Form - centered card */}
-      <div className="flex flex-1 items-center justify-center px-4">
+      {/* Right login form */}
+      <div className="flex flex-1 items-center justify-center px-4 py-10">
         <div className="w-full max-w-md">
-          <div className="mx-auto mb-10">
-            <div className="flex items-center justify-center gap-2.5 mb-4">
-              <div className="w-9 h-9 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-900/20">
-                <Building2 className="w-5 h-5 text-white" />
+          <div className="mx-auto mb-8 text-center">
+            <div className="mb-4 flex items-center justify-center gap-2.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white shadow-sm shadow-indigo-200">
+                <Building2 className="h-5 w-5" />
               </div>
-              <span className="text-xl font-bold text-slate-900 tracking-tight">ERP Core</span>
+              <span className="text-xl font-bold tracking-tight text-slate-900">
+                ERP Core
+              </span>
             </div>
-            <h1 className="text-3xl font-bold text-slate-900 mb-2 text-center">Sign in</h1>
-            <p className="text-slate-500 text-sm text-center">
+            <h1 className="text-2xl font-bold tracking-tight text-slate-900">Sign in</h1>
+            <p className="mt-1 text-sm text-slate-500">
               Enter your organization credentials below
             </p>
           </div>
 
-          {error && (
-            <div className="mb-6 p-3.5 rounded-lg bg-red-50 border border-red-100 flex items-start gap-3">
-              <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-red-700 leading-relaxed">{error}</p>
-            </div>
-          )}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && <Alert tone="error">{error}</Alert>}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label htmlFor="org_email" className="block text-sm font-medium text-slate-700 mb-1.5">
+            <div className="space-y-1.5">
+              <label
+                htmlFor="org_email"
+                className="block text-xs font-medium text-slate-700"
+              >
                 Organization Email
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -mt-2 w-4 h-4 text-slate-400" />
-                <input
+                <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                <Input
                   id="org_email"
                   name="org_email"
                   type="email"
@@ -108,27 +117,21 @@ export default function Login() {
                   onChange={handleChange}
                   placeholder="org@example.com"
                   disabled={loading}
-                  className="w-full pl-10"
+                  className="pl-10"
                 />
               </div>
             </div>
 
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label htmlFor="password" className="block text-sm font-medium text-slate-700">
-                  Password
-                </label>
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="text-xs text-slate-500 hover:text-slate-700 p-1 hover:bg-slate-100 rounded transition-colors"
-                >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                </button>
-              </div>
+            <div className="space-y-1.5">
+              <label
+                htmlFor="password"
+                className="block text-xs font-medium text-slate-700"
+              >
+                Password
+              </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -mt-2 w-4 h-4 text-slate-400" />
-                <input
+                <Lock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                <Input
                   id="password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
@@ -138,38 +141,49 @@ export default function Login() {
                   onChange={handleChange}
                   placeholder="••••••••"
                   disabled={loading}
-                  className="w-full pl-10"
+                  className="pl-10 pr-10"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((visible) => !visible)}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md border-0 p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-0"
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </button>
               </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
-            >
+            <Button type="submit" disabled={loading} className="w-full gap-2">
               {loading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 2 5.373 2 12h6zm2 12a8 8 0 00-8-8V0C5.373 0 2 5.373 2 12h6zm2 12a8 8 0 018-8V0c2.627 0 6 3.373 6 12h-6zm10-10a8 8 0 01-8 8v8a8 8 0 008-8z"></path>
-                  </svg>
+                <>
+                  <Spinner className="h-4 w-4" />
                   Signing in...
-                </span>
-              ) : 'Sign in'}
-            </button>
+                </>
+              ) : (
+                'Sign in'
+              )}
+            </Button>
 
-            <p className="text-xs text-slate-500 text-center mt-2">
-              Don't have an account?{' '}
-              <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">
+            <p className="text-center text-xs text-slate-500">
+              Don&apos;t have an account?{' '}
+              <a
+                href="#"
+                className="font-medium text-indigo-600 transition-colors hover:text-indigo-700"
+              >
                 Contact administrator
               </a>
             </p>
           </form>
 
-          <div className="mt-10 pt-6 border-t border-slate-200">
-            <p className="text-sm text-slate-600 text-center leading-relaxed">
-              ERP Core is built for small-scale businesses with organization-centric data isolation.
+          <div className="mt-10 border-t border-slate-200 pt-6">
+            <p className="text-center text-xs leading-relaxed text-slate-500">
+              ERP Core is built for small-scale businesses with organization-centric
+              data isolation.
             </p>
           </div>
         </div>
