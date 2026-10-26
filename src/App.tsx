@@ -6,6 +6,8 @@ import AppLayout from './components/layout/AppLayout';
 import ProductList from './pages/products/ProductList';
 import ProductCreate from './pages/products/ProductCreate';
 import ProductEdit from './pages/products/ProductEdit';
+import InventoryList from './pages/inventory/InventoryList';
+import LowStock from './pages/inventory/LowStock';
 
 export default function App() {
   return (
@@ -18,6 +20,8 @@ export default function App() {
         <Route path="/products" element={<ProductList />} />
         <Route path="/products/create" element={<ProductCreate />} />
         <Route path="/products/:id/edit" element={<ProductEdit />} />
+        <Route path="/inventory" element={<InventoryList />} />
+        <Route path="/inventory/low-stock" element={<LowStock />} />
         <Route path="*" element={<ComingSoon />} />
       </Route>
     </Routes>

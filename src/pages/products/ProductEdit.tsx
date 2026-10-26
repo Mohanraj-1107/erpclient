@@ -62,6 +62,7 @@ export default function ProductEdit() {
       toast.success('Product updated', `"${updated.productName}" was saved successfully.`);
       queryClient.invalidateQueries({ queryKey: ['products'] });
       queryClient.invalidateQueries({ queryKey: ['product', productId] });
+      queryClient.invalidateQueries({ queryKey: ['inventory'] });
       navigate('/products');
     },
   });

@@ -19,6 +19,7 @@ export default function ProductCreate() {
     onSuccess: (created) => {
       toast.success('Product created', `"${created.productName}" was added to your catalog.`);
       queryClient.invalidateQueries({ queryKey: ['products'] });
+      queryClient.invalidateQueries({ queryKey: ['inventory'] });
       navigate('/products');
     },
   });

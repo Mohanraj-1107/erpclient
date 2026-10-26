@@ -5,6 +5,7 @@ import { Box, Pencil, Plus, RefreshCw, Search, Trash2, X } from 'lucide-react';
 import { productApi } from '@/api/products';
 import type { Product } from '@/types/product';
 import { cn, formatMoney, getApiErrorMessage } from '@/lib/utils';
+import { getInitials, getProductColor } from '@/lib/productVisuals';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -26,19 +27,6 @@ import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { useToast } from '@/components/common/useToast';
 
 const PAGE_SIZE = 20;
-
-const PRODUCT_COLORS = ['#b33ff4', '#34B0B9', '#534EB0', '#BF8D25', '#d66359'];
-
-function getInitials(name: string): string {
-  const parts = name.trim().split(/\s+/).filter(Boolean);
-  if (parts.length === 0) return '?';
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-  return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
-}
-
-function getProductColor(index: number): string {
-  return PRODUCT_COLORS[index % PRODUCT_COLORS.length];
-}
 
 function getMargin(product: Product): number | null {
   if (product.purchasePrice <= 0) return null;
@@ -102,6 +90,7 @@ export default function ProductList() {
         setPage((current) => Math.max(0, current - 1));
       }
       queryClient.invalidateQueries({ queryKey: ['products'] });
+      queryClient.invalidateQueries({ queryKey: ['inventory'] });
       setPendingDelete(null);
     },
     onError: (mutationError) => {
