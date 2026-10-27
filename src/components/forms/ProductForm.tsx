@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type ReactNode } from 'react';
+import { useState, type FormEvent } from 'react';
 import { IndianRupee, Package, Save, TrendingUp } from 'lucide-react';
 import type { CreateProductRequest, Product, ProductUnit } from '@/types/product';
 import { PRODUCT_UNITS } from '@/types/product';
@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { FormField } from '@/components/ui/form-field';
 import { Alert } from '@/components/common/Alert';
 import { Spinner } from '@/components/ui/spinner';
+import { FormSection } from '@/components/forms/FormSection';
 import { cn, formatMoney } from '@/lib/utils';
 
 interface ProductFormProps {
@@ -87,33 +88,6 @@ function validate(state: FormState): FormErrors {
   }
 
   return errors;
-}
-
-function FormSection({
-  icon,
-  title,
-  description,
-  children,
-}: {
-  icon: ReactNode;
-  title: string;
-  description: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className="rounded-xl border border-slate-200/80 bg-slate-100/80 shadow-xs">
-      <div className="flex items-start gap-3 rounded-t-xl border-b border-slate-200/60 bg-slate-200/70 px-4 py-3.5 sm:px-5">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
-          {icon}
-        </div>
-        <div>
-          <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
-          <p className="mt-0.5 text-xs text-slate-500">{description}</p>
-        </div>
-      </div>
-      <div className="space-y-4 p-4 sm:p-5">{children}</div>
-    </section>
-  );
 }
 
 export function ProductForm({

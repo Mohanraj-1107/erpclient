@@ -8,6 +8,10 @@ import ProductCreate from './pages/products/ProductCreate';
 import ProductEdit from './pages/products/ProductEdit';
 import InventoryList from './pages/inventory/InventoryList';
 import LowStock from './pages/inventory/LowStock';
+import CustomerList from './pages/customers/CustomerList';
+import CustomerCreate from './pages/customers/CustomerCreate';
+import CustomerEdit from './pages/customers/CustomerEdit';
+import CustomerView from './pages/customers/CustomerView';
 
 export default function App() {
   return (
@@ -22,6 +26,10 @@ export default function App() {
         <Route path="/products/:id/edit" element={<ProductEdit />} />
         <Route path="/inventory" element={<InventoryList />} />
         <Route path="/inventory/low-stock" element={<LowStock />} />
+        <Route path="/customers" element={<CustomerList />} />
+        <Route path="/customers/create" element={<CustomerCreate />} />
+        <Route path="/customers/:id" element={<CustomerView />} />
+        <Route path="/customers/:id/edit" element={<CustomerEdit />} />
         <Route path="*" element={<ComingSoon />} />
       </Route>
     </Routes>

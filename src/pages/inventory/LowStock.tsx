@@ -148,7 +148,7 @@ export default function LowStock() {
         </div>
 
         {lowStockQuery.isLoading ? (
-          <InventoryTableSkeleton />
+          <InventoryTableSkeleton showDeficit />
         ) : lowStockQuery.isError ? (
           <div className="p-4">
             <Alert tone="error">

@@ -1,5 +1,6 @@
 import { useState, type ComponentType, type SVGProps } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 import {
   Box,
   Building2,
@@ -12,6 +13,8 @@ import {
   Truck,
   Users,
 } from 'lucide-react';
+import api from '@/api/axiosInstance';
+import { clearStoredOrgId } from '@/lib/authStorage';
 import { AvatarDropdown } from './AvatarDropdown';
 
 interface NavItem {
@@ -52,13 +55,22 @@ function resolveTitle(pathname: string): { label: string; Icon: NavItem['icon'] 
 export default function AppLayout() {
   const navigate = useNavigate();
   const location = useLocation();
+  const queryClient = useQueryClient();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const activeKey = resolveActiveKey(location.pathname);
   const { label: titleLabel, Icon: TitleIcon } = resolveTitle(location.pathname);
 
-  const handleSignout = () => {
-    navigate('/login', { replace: true });
+  const handleSignout = async () => {
+    try {
+      await api.post('/v1/logout');
+    } catch {
+      // Ignore logout errors; the local session is cleared below.
+    } finally {
+      queryClient.clear();
+      clearStoredOrgId();
+      navigate('/login', { replace: true });
+    }
   };
 
   const handleNavClick = (href: string) => {

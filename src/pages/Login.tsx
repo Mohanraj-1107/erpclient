@@ -1,7 +1,9 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 import { Building2, Eye, EyeOff, Lock, Mail, ShieldCheck } from 'lucide-react';
 import api from '@/api/axiosInstance';
+import { setStoredOrgId } from '@/lib/authStorage';
 import { getApiErrorMessage } from '@/lib/utils';
 import { Alert } from '@/components/common/Alert';
 import { Button } from '@/components/ui/button';
@@ -13,8 +15,15 @@ interface LoginFormData {
   password: string;
 }
 
+interface LoginResponse {
+  message: string;
+  orgId: number | null;
+  status: string;
+}
+
 export default function Login() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [formData, setFormData] = useState<LoginFormData>({
     org_email: '',
     password: '',
@@ -34,10 +43,17 @@ export default function Login() {
     setLoading(true);
 
     try {
-      await api.post('/v1/login', {
+      const { data } = await api.post<LoginResponse>('/v1/login', {
         org_email: formData.org_email,
         password: formData.password,
       });
+
+      if (data.status !== 'success' || data.orgId == null) {
+        throw new Error(data.message || 'Login failed. Please try again.');
+      }
+
+      queryClient.clear();
+      setStoredOrgId(data.orgId);
       navigate('/dashboard', { replace: true });
     } catch (err) {
       setError(getApiErrorMessage(err, 'Login failed. Please try again.'));
