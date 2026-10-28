@@ -93,11 +93,11 @@ export function ConfirmDialog({
         aria-modal="true"
         aria-labelledby="confirm-dialog-title"
         aria-describedby="confirm-dialog-description"
-        className="animate-dialog-in relative w-full max-w-sm overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl shadow-slate-300/40"
+        className="animate-dialog-in relative w-full max-w-sm overflow-hidden rounded-xl border border-theme-border bg-theme-surface shadow-xl shadow-slate-300/40"
       >
         <div className="p-4 pr-10">
           <div className="flex items-start gap-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-50 text-red-600 ring-1 ring-red-100">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-status-error text-status-error-fg ring-1 ring-status-error-border">
               {icon ?? <AlertTriangle className="h-4 w-4" />}
             </div>
 
@@ -128,7 +128,7 @@ export function ConfirmDialog({
           <X className="h-3.5 w-3.5" />
         </button>
 
-        <div className="flex flex-col-reverse gap-2 border-t border-slate-200/70 bg-slate-50/60 px-4 py-3 sm:flex-row sm:justify-end">
+        <div className="flex flex-col-reverse gap-2 border-t border-theme-border/70 bg-theme-page/60 px-4 py-3 sm:flex-row sm:justify-end">
           <Button
             size="sm"
             variant="outline"

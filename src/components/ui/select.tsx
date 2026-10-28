@@ -154,12 +154,12 @@ export function Select({
         onClick={toggleOpen}
         onKeyDown={handleKeyDown}
         className={cn(
-          'flex w-full items-center justify-between gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-left text-sm font-normal text-slate-900 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-0 disabled:bg-slate-50',
-          open && 'border-transparent ring-2 ring-indigo-500',
+          'flex w-full items-center justify-between gap-2 rounded-lg border border-theme-input-border bg-theme-surface px-3 py-2 text-left text-sm font-normal text-theme-text transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-theme-primary-ring focus:ring-offset-0 disabled:bg-theme-page',
+          open && 'border-transparent ring-2 ring-theme-primary-ring',
           className
         )}
       >
-        <span className={cn('truncate', !selected && 'text-slate-400')}>
+        <span className={cn('truncate', !selected && 'text-theme-placeholder')}>
           {selected?.label ?? placeholder}
         </span>
         <ChevronDown
@@ -176,10 +176,10 @@ export function Select({
           id={listboxId}
           role="listbox"
           aria-labelledby={buttonId}
-          className="animate-dropdown-in absolute left-0 right-0 z-50 mt-1 max-h-60 overflow-auto rounded-lg border border-slate-200 bg-white p-1 shadow-lg shadow-slate-300/40"
+          className="animate-dropdown-in absolute left-0 right-0 z-50 mt-1 max-h-60 overflow-auto rounded-lg border border-theme-border bg-theme-surface p-1 shadow-lg shadow-slate-300/40"
         >
           {options.length === 0 ? (
-            <li className="px-2.5 py-2 text-sm text-slate-400">No options</li>
+            <li className="px-2.5 py-2 text-sm text-theme-text-subtle">No options</li>
           ) : (
             options.map((option, index) => {
               const isSelected = option.value === value;

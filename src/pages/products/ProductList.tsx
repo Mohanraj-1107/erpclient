@@ -285,7 +285,7 @@ export default function ProductList() {
                         variant="ghost"
                         size="sm"
                         onClick={() => setPendingDelete(product)}
-                        className="px-2 text-red-500 hover:bg-red-50 hover:text-red-600"
+                        className="px-2 text-status-error-fg hover:bg-status-error hover:text-status-error-fg"
                         aria-label={`Delete ${product.productName}`}
                         title="Delete"
                       >

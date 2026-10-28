@@ -6,6 +6,7 @@ import api from '@/api/axiosInstance';
 import { setStoredOrgId } from '@/lib/authStorage';
 import { getApiErrorMessage } from '@/lib/utils';
 import { Alert } from '@/components/common/Alert';
+import { ThemeSwitcher } from '@/components/theme/ThemeSwitcher';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Spinner } from '@/components/ui/spinner';
@@ -63,11 +64,15 @@ export default function Login() {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-50 font-sans">
+    <div className="relative flex min-h-screen bg-theme-page font-sans">
+      <div className="absolute right-4 top-4 z-30">
+        <ThemeSwitcher variant="page" />
+      </div>
+
       {/* Left branding panel */}
       <div className="hidden w-1/3 flex-col items-center justify-center border-r border-slate-200/60 bg-slate-200/70 p-10 text-center md:flex">
         <div className="inline-flex items-center justify-center gap-2.5">
-          <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-indigo-600 text-white shadow-sm shadow-indigo-200">
+          <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-theme-primary text-theme-primary-fg shadow-sm shadow-theme-primary-soft">
             <Building2 className="h-6 w-6" />
           </div>
           <span className="text-2xl font-bold tracking-tight text-slate-900">
@@ -98,7 +103,7 @@ export default function Login() {
         <div className="w-full max-w-md">
           <div className="mx-auto mb-8 text-center">
             <div className="mb-4 flex items-center justify-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white shadow-sm shadow-indigo-200">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-theme-primary text-theme-primary-fg shadow-sm shadow-theme-primary-soft">
                 <Building2 className="h-5 w-5" />
               </div>
               <span className="text-xl font-bold tracking-tight text-slate-900">

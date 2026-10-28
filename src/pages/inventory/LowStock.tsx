@@ -68,7 +68,7 @@ export default function LowStock() {
         action={
           <>
             {lowStockQuery.data && (
-              <span className="rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-700 ring-1 ring-amber-100">
+              <span className="rounded-full bg-status-warning px-2.5 py-1 text-xs font-semibold text-status-warning-fg ring-1 ring-status-warning-border">
                 {items.length} low
               </span>
             )}
@@ -88,15 +88,15 @@ export default function LowStock() {
       {!lowStockQuery.isLoading &&
         !lowStockQuery.isError &&
         items.length > 0 && (
-          <div className="flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50/70 px-4 py-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-100 text-amber-600 ring-1 ring-amber-200">
+          <div className="flex items-start gap-3 rounded-xl border border-status-warning-border bg-status-warning/70 px-4 py-3">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-status-warning text-status-warning-fg ring-1 ring-status-warning-border">
               <TriangleAlert className="h-4 w-4" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-amber-900">
+              <p className="text-sm font-semibold text-status-warning-fg">
                 Low stock alert
               </p>
-              <p className="mt-0.5 text-xs leading-relaxed text-amber-700">
+              <p className="mt-0.5 text-xs leading-relaxed text-status-warning-fg/90">
                 {items.length} item{items.length === 1 ? '' : 's'} at or below
                 minimum stock. Add stock to avoid stockouts.
               </p>

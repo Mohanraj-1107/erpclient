@@ -84,14 +84,14 @@ export default function InventoryList() {
               className={cn(
                 'gap-1.5',
                 lowStockCount > 0
-                  ? 'border-amber-200 bg-amber-50 text-amber-700 hover:border-amber-300 hover:bg-amber-100 hover:text-amber-800'
+                  ? 'border-status-warning-border bg-status-warning text-status-warning-fg hover:border-status-warning-border hover:bg-status-warning/80 hover:text-status-warning-fg'
                   : 'text-slate-600'
               )}
             >
               <TriangleAlert className="h-3.5 w-3.5" />
               Low stock
               {lowStockCount > 0 && (
-                <span className="rounded-full bg-amber-200/80 px-1.5 py-0.5 text-[10px] font-bold text-amber-800">
+                <span className="rounded-full bg-status-warning-border/80 px-1.5 py-0.5 text-[10px] font-bold text-status-warning-fg">
                   {lowStockCount}
                 </span>
               )}

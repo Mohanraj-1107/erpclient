@@ -7,7 +7,7 @@ export function Spinner({ className }: { className?: string }) {
 
 export function LoadingBlock({ label = 'Loading...' }: { label?: string }) {
   return (
-    <div className="flex items-center justify-center gap-2 py-12 text-sm text-slate-500">
+    <div className="flex items-center justify-center gap-2 py-12 text-sm text-theme-text-muted">
       <Loader2 className="h-4 w-4 animate-spin" />
       {label}
     </div>

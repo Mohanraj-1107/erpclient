@@ -12,6 +12,10 @@ import CustomerList from './pages/customers/CustomerList';
 import CustomerCreate from './pages/customers/CustomerCreate';
 import CustomerEdit from './pages/customers/CustomerEdit';
 import CustomerView from './pages/customers/CustomerView';
+import SupplierList from './pages/suppliers/SupplierList';
+import SupplierCreate from './pages/suppliers/SupplierCreate';
+import SupplierEdit from './pages/suppliers/SupplierEdit';
+import SupplierView from './pages/suppliers/SupplierView';
 
 export default function App() {
   return (
@@ -30,6 +34,10 @@ export default function App() {
         <Route path="/customers/create" element={<CustomerCreate />} />
         <Route path="/customers/:id" element={<CustomerView />} />
         <Route path="/customers/:id/edit" element={<CustomerEdit />} />
+        <Route path="/suppliers" element={<SupplierList />} />
+        <Route path="/suppliers/create" element={<SupplierCreate />} />
+        <Route path="/suppliers/:id" element={<SupplierView />} />
+        <Route path="/suppliers/:id/edit" element={<SupplierEdit />} />
         <Route path="*" element={<ComingSoon />} />
       </Route>
     </Routes>

@@ -15,8 +15,8 @@ export function Alert({ tone = 'error', children, className }: AlertProps) {
       className={cn(
         'flex items-start gap-2.5 rounded-lg border p-3 text-sm',
         isError
-          ? 'border-red-100 bg-red-50 text-red-700'
-          : 'border-emerald-100 bg-emerald-50 text-emerald-700',
+          ? 'border-status-error-border bg-status-error text-status-error-fg'
+          : 'border-status-success-border bg-status-success text-status-success-fg',
         className
       )}
     >

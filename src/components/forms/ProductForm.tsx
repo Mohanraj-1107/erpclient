@@ -301,7 +301,7 @@ export function ProductForm({
               <span
                 className={cn(
                   'text-xs font-semibold tabular-nums',
-                  profit >= 0 ? 'text-emerald-600' : 'text-red-600'
+                  profit >= 0 ? 'text-status-success-fg' : 'text-status-error-fg'
                 )}
               >
                 {formatMoney(profit)} profit / unit

@@ -171,7 +171,7 @@ export function StockAdjustDialog({
         aria-modal="true"
         aria-labelledby="stock-dialog-title"
         aria-describedby="stock-dialog-description"
-        className="animate-dialog-in relative w-full max-w-md overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl shadow-slate-300/40"
+        className="animate-dialog-in relative w-full max-w-md overflow-hidden rounded-xl border border-theme-border bg-theme-surface shadow-xl shadow-slate-300/40"
       >
         <form onSubmit={handleSubmit}>
           <div className="flex items-start gap-3 border-b border-slate-100 px-5 py-4 pr-12">
@@ -179,8 +179,8 @@ export function StockAdjustDialog({
               className={cn(
                 'flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ring-1',
                 isAdd
-                  ? 'bg-emerald-50 text-emerald-600 ring-emerald-100'
-                  : 'bg-red-50 text-red-600 ring-red-100'
+                  ? 'bg-status-success text-status-success-fg ring-status-success-border'
+                  : 'bg-status-error text-status-error-fg ring-status-error-border'
               )}
             >
               {isAdd ? (
@@ -238,7 +238,8 @@ export function StockAdjustDialog({
                   disabled={loading}
                   className={cn(
                     'pr-16',
-                    error && 'border-red-300 focus:ring-red-500'
+                    error &&
+                      'border-status-error-border focus:ring-status-error-fg'
                   )}
                   aria-invalid={Boolean(error)}
                 />
@@ -246,7 +247,7 @@ export function StockAdjustDialog({
                   {item.unit}
                 </span>
               </div>
-              {error && <p className="mt-1.5 text-sm text-red-600">{error}</p>}
+              {error && <p className="mt-1.5 text-sm text-status-error-fg">{error}</p>}
             </div>
 
             <div className="flex flex-wrap gap-1.5">
@@ -295,14 +296,14 @@ export function StockAdjustDialog({
             </div>
 
             {wouldBeLow && (
-              <p className="flex items-start gap-2 rounded-lg border border-amber-100 bg-amber-50 px-3 py-2 text-xs font-normal leading-relaxed text-amber-700">
+              <p className="flex items-start gap-2 rounded-lg border border-status-warning-border bg-status-warning px-3 py-2 text-xs font-normal leading-relaxed text-status-warning-fg">
                 <TriangleAlert className="mt-0.5 h-3.5 w-3.5 shrink-0" />
                 This will leave the product at or below its minimum stock.
               </p>
             )}
           </div>
 
-          <div className="flex flex-col-reverse gap-2 border-t border-slate-200/70 bg-slate-50/60 px-5 py-3.5 sm:flex-row sm:justify-end">
+          <div className="flex flex-col-reverse gap-2 border-t border-theme-border/70 bg-theme-page/60 px-5 py-3.5 sm:flex-row sm:justify-end">
             <Button
               variant="outline"
               type="button"

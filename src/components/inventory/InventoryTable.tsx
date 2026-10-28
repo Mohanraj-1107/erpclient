@@ -229,7 +229,7 @@ export function InventoryTable({
                   {deficit !== null ? (
                     <QuantityValue
                       value={deficit}
-                      valueClassName="text-xs font-semibold text-red-600"
+                      valueClassName="text-xs font-semibold text-status-error-fg"
                     />
                   ) : (
                     <span className="text-xs text-slate-300">—</span>
@@ -259,7 +259,7 @@ export function InventoryTable({
                     size="sm"
                     onClick={() => onAdjust(item, 'add')}
                     disabled={disabled}
-                    className="px-2 text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700"
+                    className="px-2 text-status-success-fg hover:bg-status-success hover:text-status-success-fg"
                     aria-label={`Add stock to ${item.productName}`}
                     title="Add stock"
                   >
@@ -270,7 +270,7 @@ export function InventoryTable({
                     size="sm"
                     onClick={() => onAdjust(item, 'remove')}
                     disabled={disabled}
-                    className="px-2 text-red-500 hover:bg-red-50 hover:text-red-600"
+                    className="px-2 text-status-error-fg hover:bg-status-error hover:text-status-error-fg"
                     aria-label={`Remove stock from ${item.productName}`}
                     title="Remove stock"
                   >

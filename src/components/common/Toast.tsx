@@ -25,22 +25,25 @@ interface ToastRecord {
 
 const variantStyles: Record<
   ToastVariant,
-  { icon: typeof CheckCircle2; tile: string; bar: string }
+  { icon: typeof CheckCircle2; card: string; tile: string; bar: string }
 > = {
   success: {
     icon: CheckCircle2,
-    tile: 'bg-emerald-50 text-emerald-600 ring-emerald-100',
-    bar: 'bg-emerald-500',
+    card: 'border-theme-toast-success-border bg-theme-toast-success text-theme-toast-success-fg',
+    tile: 'bg-status-success text-status-success-fg ring-status-success-border',
+    bar: 'bg-status-success-fg',
   },
   error: {
     icon: AlertTriangle,
-    tile: 'bg-red-50 text-red-600 ring-red-100',
-    bar: 'bg-red-500',
+    card: 'border-theme-toast-error-border bg-theme-toast-error text-theme-toast-error-fg',
+    tile: 'bg-status-error text-status-error-fg ring-status-error-border',
+    bar: 'bg-status-error-fg',
   },
   info: {
     icon: Info,
-    tile: 'bg-indigo-50 text-indigo-600 ring-indigo-100',
-    bar: 'bg-indigo-500',
+    card: 'border-theme-toast-info-border bg-theme-toast-info text-theme-toast-info-fg',
+    tile: 'bg-status-info text-status-info-fg ring-status-info-border',
+    bar: 'bg-status-info-fg',
   },
 };
 
@@ -111,7 +114,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             <div
               key={item.id}
               role="status"
-              className="animate-toast-in pointer-events-auto relative w-full overflow-hidden rounded-xl border border-slate-200 bg-white p-3.5 pr-9 shadow-lg shadow-slate-300/40"
+              className={cn(
+                'animate-toast-in pointer-events-auto relative w-full overflow-hidden rounded-xl border p-3.5 pr-9 shadow-lg shadow-slate-300/40',
+                style.card
+              )}
             >
               <div className="flex items-start gap-3">
                 <div
@@ -123,9 +129,9 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                   <Icon className="h-4 w-4" />
                 </div>
                 <div className="min-w-0 flex-1 pt-0.5">
-                  <p className="text-sm font-semibold text-slate-900">{item.title}</p>
+                  <p className="text-sm font-semibold">{item.title}</p>
                   {item.description && (
-                    <p className="mt-0.5 text-xs leading-relaxed text-slate-500">
+                    <p className="mt-0.5 text-xs leading-relaxed opacity-80">
                       {item.description}
                     </p>
                   )}
@@ -135,7 +141,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                 type="button"
                 onClick={() => dismiss(item.id)}
                 aria-label="Dismiss notification"
-                className="absolute right-2 top-2 rounded-md p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 border-0 focus:outline-none focus:ring-0"
+                className="absolute right-2 top-2 rounded-md p-1 text-theme-text-subtle transition-colors hover:bg-theme-surface-hover hover:text-theme-text-muted border-0 focus:outline-none focus:ring-0"
               >
                 <X className="h-3.5 w-3.5" />
               </button>

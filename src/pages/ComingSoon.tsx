@@ -9,7 +9,7 @@ export default function ComingSoon() {
   return (
     <div className="flex min-h-[60vh] items-center justify-center">
       <Card className="w-full max-w-md p-8 text-center">
-        <div className="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-amber-50 text-amber-600">
+        <div className="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-status-info text-status-info-fg ring-1 ring-status-info-border">
           <PackageOpen className="h-5 w-5" />
         </div>
         <h2 className="text-xl font-bold text-slate-900 mb-2">Coming soon</h2>

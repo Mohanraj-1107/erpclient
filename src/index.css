@@ -19,24 +19,491 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 }
 
+/*
+ * Theme tokens.
+ *
+ * The default ERP theme is protected. Only `[data-theme]` blocks below may
+ * alter any of these tokens, and the default color values are intentionally
+ * byte-for-byte materializations of the original `slate-*` / `indigo-*`
+ * backgrounds, surfaces, borders, and primary actions.
+ *
+ * Additional enterprise themes expose muted page/backdrop surfaces, subtle
+ * tinted secondaries and topbars, and slightly stronger input borders. The
+ * shared status tokens remain identical for the default and every theme.
+ */
+@theme inline {
+  --color-theme-page: var(--theme-page);
+  --color-theme-surface: var(--theme-surface);
+  --color-theme-surface-hover: var(--theme-surface-hover);
+  --color-theme-surface-muted: var(--theme-surface-muted);
+  --color-theme-surface-elevated: var(--theme-surface-elevated);
+  --color-theme-border: var(--theme-border);
+  --color-theme-border-subtle: var(--theme-border-subtle);
+  --color-theme-input-border: var(--theme-input-border);
+  --color-theme-text: var(--theme-text);
+  --color-theme-text-muted: var(--theme-text-muted);
+  --color-theme-text-subtle: var(--theme-text-subtle);
+  --color-theme-placeholder: var(--theme-placeholder);
+  --color-theme-hover: var(--theme-hover);
+  --color-theme-selected: var(--theme-selected);
+  --color-theme-selected-fg: var(--theme-selected-fg);
+  --color-theme-toolbar: var(--theme-toolbar);
+  --color-theme-overlay: var(--theme-overlay);
+  --color-theme-navigation-background: var(--theme-navbar-background);
+  --color-theme-sidebar-background: var(--theme-sidebar-background);
+
+  --color-theme-primary: var(--theme-primary);
+  --color-theme-primary-hover: var(--theme-primary-hover);
+  --color-theme-primary-fg: var(--theme-primary-fg);
+  --color-theme-primary-soft: var(--theme-primary-soft);
+  --color-theme-primary-ring: var(--theme-primary-ring);
+  --color-theme-muted-ring: var(--theme-muted-ring);
+  --color-theme-focus-ring: var(--theme-focus-ring);
+  --color-theme-secondary: var(--theme-secondary);
+  --color-theme-secondary-fg: var(--theme-secondary-fg);
+  --color-theme-secondary-border: var(--theme-secondary-border);
+  --color-theme-secondary-hover: var(--theme-secondary-hover);
+  --color-theme-nav: var(--theme-nav);
+  --color-theme-nav-fg: var(--theme-nav-fg);
+  --color-theme-nav-muted: var(--theme-nav-muted);
+  --color-theme-nav-subtle: var(--theme-nav-subtle);
+  --color-theme-nav-item-fg: var(--theme-nav-item-fg);
+  --color-theme-nav-item-hover-fg: var(--theme-nav-item-hover-fg);
+  --color-theme-nav-icon: var(--theme-nav-icon);
+  --color-theme-nav-icon-hover: var(--theme-nav-icon-hover);
+  --color-theme-nav-control-hover-fg: var(--theme-nav-control-hover-fg);
+  --color-theme-nav-hover: var(--theme-nav-hover);
+  --color-theme-nav-border: var(--theme-nav-border);
+  --color-theme-nav-border-subtle: var(--theme-nav-border-subtle);
+  --color-theme-nav-active-bg: var(--theme-nav-active-bg);
+  --color-theme-nav-active-fg: var(--theme-nav-active-fg);
+  --color-theme-nav-active-icon: var(--theme-nav-active-icon);
+  --color-theme-topbar: var(--theme-topbar);
+  --color-theme-topbar-fg: var(--theme-topbar-fg);
+  --color-theme-topbar-muted: var(--theme-topbar-muted);
+  --color-theme-topbar-subtle: var(--theme-topbar-subtle);
+  --color-theme-topbar-hover: var(--theme-topbar-hover);
+  --color-theme-topbar-border: var(--theme-topbar-border);
+  --color-theme-topbar-icon: var(--theme-topbar-icon);
+  --color-theme-toast-success: var(--theme-toast-success);
+  --color-theme-toast-success-fg: var(--theme-toast-success-fg);
+  --color-theme-toast-success-border: var(--theme-toast-success-border);
+  --color-theme-toast-error: var(--theme-toast-error);
+  --color-theme-toast-error-fg: var(--theme-toast-error-fg);
+  --color-theme-toast-error-border: var(--theme-toast-error-border);
+  --color-theme-toast-info: var(--theme-toast-info);
+  --color-theme-toast-info-fg: var(--theme-toast-info-fg);
+  --color-theme-toast-info-border: var(--theme-toast-info-border);
+  --color-status-warning: var(--status-warning);
+  --color-status-warning-fg: var(--status-warning-fg);
+  --color-status-warning-border: var(--status-warning-border);
+  --color-status-info: var(--status-info);
+  --color-status-info-fg: var(--status-info-fg);
+  --color-status-info-border: var(--status-info-border);
+  --color-status-success: var(--status-success);
+  --color-status-success-fg: var(--status-success-fg);
+  --color-status-success-border: var(--status-success-border);
+  --color-status-error: var(--status-error);
+  --color-status-error-fg: var(--status-error-fg);
+  --color-status-error-border: var(--status-error-border);
+
+  /*
+   * Legacy palette re-maps. Page-level components keep their original
+   * `slate-*` / `indigo-*` classes, but those utilities resolve through these
+   * indirection vars so every enterprise theme can retune them. The default
+   * values below are the byte-exact Tailwind colors, guaranteeing the default
+   * theme renders pixel-identically.
+   */
+  --color-slate-50: var(--theme-slate-50);
+  --color-slate-100: var(--theme-slate-100);
+  --color-slate-200: var(--theme-slate-200);
+  --color-slate-300: var(--theme-slate-300);
+  --color-slate-400: var(--theme-slate-400);
+  --color-slate-500: var(--theme-slate-500);
+  --color-slate-600: var(--theme-slate-600);
+  --color-slate-700: var(--theme-slate-700);
+  --color-slate-800: var(--theme-slate-800);
+  --color-slate-900: var(--theme-slate-900);
+
+  --color-indigo-50: var(--theme-indigo-50);
+  --color-indigo-100: var(--theme-indigo-100);
+  --color-indigo-200: var(--theme-indigo-200);
+  --color-indigo-300: var(--theme-indigo-300);
+  --color-indigo-400: var(--theme-indigo-400);
+  --color-indigo-500: var(--theme-indigo-500);
+  --color-indigo-600: var(--theme-indigo-600);
+  --color-indigo-700: var(--theme-indigo-700);
+  --color-indigo-800: var(--theme-indigo-800);
+  --color-indigo-900: var(--theme-indigo-900);
+}
+
+:root {
+  --theme-page: #f8fafc;
+  --theme-surface: #ffffff;
+  --theme-surface-hover: #f1f5f9;
+  --theme-surface-muted: #f1f5f9;
+  --theme-surface-elevated: #ffffff;
+  --theme-border: #e2e8f0;
+  --theme-border-subtle: #f1f5f9;
+  --theme-input-border: #e2e8f0;
+  --theme-text: #0f172a;
+  --theme-text-muted: #64748b;
+  --theme-text-subtle: #94a3b8;
+  --theme-placeholder: #94a3b8;
+  --theme-hover: #f1f5f9;
+  --theme-selected: #eef2ff;
+  --theme-selected-fg: #4338ca;
+  --theme-toolbar: rgb(226 232 240 / 0.70);
+  --theme-overlay: rgb(15 23 42 / 0.40);
+  --theme-navbar-background: #ffffff;
+  --theme-sidebar-background: #ffffff;
+
+  --theme-primary: #4f46e5;
+  --theme-primary-hover: #4338ca;
+  --theme-primary-fg: #ffffff;
+  --theme-primary-soft: #c7d2fe;
+  --theme-primary-ring: #6366f1;
+  --theme-muted-ring: #94a3b8;
+  --theme-focus-ring: #6366f1;
+  --theme-secondary: #f1f5f9;
+  --theme-secondary-fg: #334155;
+  --theme-secondary-border: transparent;
+  --theme-secondary-hover: #e2e8f0;
+
+  --theme-nav: #ffffff;
+  --theme-nav-fg: #0f172a;
+  --theme-nav-muted: #64748b;
+  --theme-nav-subtle: #94a3b8;
+  --theme-nav-item-fg: #475569;
+  --theme-nav-item-hover-fg: #0f172a;
+  --theme-nav-icon: #94a3b8;
+  --theme-nav-icon-hover: #475569;
+  --theme-nav-control-hover-fg: #475569;
+  --theme-nav-hover: #f1f5f9;
+  --theme-nav-border: #e2e8f0;
+  --theme-nav-border-subtle: #f1f5f9;
+  --theme-nav-active-bg: #eef2ff;
+  --theme-nav-active-fg: #4338ca;
+  --theme-nav-active-icon: #4f46e5;
+
+  --theme-topbar: #ffffff;
+  --theme-topbar-fg: #0f172a;
+  --theme-topbar-muted: #475569;
+  --theme-topbar-subtle: #94a3b8;
+  --theme-topbar-hover: #f1f5f9;
+  --theme-topbar-border: #e2e8f0;
+  --theme-topbar-icon: #4f46e5;
+
+  --theme-toast-success: #ffffff;
+  --theme-toast-success-fg: #0f172a;
+  --theme-toast-success-border: #e2e8f0;
+  --theme-toast-error: #ffffff;
+  --theme-toast-error-fg: #0f172a;
+  --theme-toast-error-border: #e2e8f0;
+  --theme-toast-info: #ffffff;
+  --theme-toast-info-fg: #0f172a;
+  --theme-toast-info-border: #e2e8f0;
+
+  --theme-scrollbar-thumb: #cbd5e1;
+  --theme-scrollbar-thumb-hover: #94a3b8;
+
+  /* Shared semantic status colors */
+  --status-warning: #fef3c7;
+  --status-warning-fg: #92400e;
+  --status-warning-border: #fcd34d;
+  --status-info: #dbeafe;
+  --status-info-fg: #1e40af;
+  --status-info-border: #93c5fd;
+  --status-success: #dcfce7;
+  --status-success-fg: #166534;
+  --status-success-border: #86efac;
+  --status-error: #fee2e2;
+  --status-error-fg: #991b1b;
+  --status-error-border: #fca5a5;
+
+  /* Legacy Tailwind scale defaults: byte-exact for the protected default theme. */
+  --theme-slate-50: #f8fafc;
+  --theme-slate-100: #f1f5f9;
+  --theme-slate-200: #e2e8f0;
+  --theme-slate-300: #cbd5e1;
+  --theme-slate-400: #94a3b8;
+  --theme-slate-500: #64748b;
+  --theme-slate-600: #475569;
+  --theme-slate-700: #334155;
+  --theme-slate-800: #1e293b;
+  --theme-slate-900: #0f172a;
+
+  --theme-indigo-50: #eef2ff;
+  --theme-indigo-100: #e0e7ff;
+  --theme-indigo-200: #c7d2fe;
+  --theme-indigo-300: #a5b4fc;
+  --theme-indigo-400: #818cf8;
+  --theme-indigo-500: #6366f1;
+  --theme-indigo-600: #4f46e5;
+  --theme-indigo-700: #4338ca;
+  --theme-indigo-800: #3730a3;
+  --theme-indigo-900: #312e81;
+}
+
+[data-theme='teal'] {
+  --theme-page: #f3f6f5;
+  --theme-surface: #ffffff;
+  --theme-surface-elevated: #ffffff;
+  --theme-border: #dde5e1;
+  --theme-border-subtle: #e7edea;
+  --theme-input-border: #c6d1cc;
+  --theme-text: #24332f;
+  --theme-text-muted: #687873;
+  --theme-secondary: #e8f0ed;
+  --theme-secondary-fg: #173f3a;
+  --theme-secondary-border: #cddbd6;
+  --theme-secondary-hover: color-mix(in srgb, var(--theme-secondary) 86%, var(--theme-secondary-border));
+  --theme-primary: #376f68;
+  --theme-primary-fg: #ffffff;
+  --theme-primary-hover: #2f5d57;
+  --theme-primary-ring: var(--theme-primary);
+  --theme-focus-ring: var(--theme-primary);
+  --theme-muted-ring: color-mix(in srgb, var(--theme-primary) 55%, var(--theme-surface));
+  --theme-placeholder: color-mix(in srgb, var(--theme-text-muted) 70%, var(--theme-surface));
+  --theme-hover: color-mix(in srgb, var(--theme-primary) 10%, var(--theme-surface));
+  --theme-selected: color-mix(in srgb, var(--theme-primary) 16%, var(--theme-surface));
+  --theme-selected-fg: color-mix(in srgb, var(--theme-text) 30%, var(--theme-primary-hover));
+  --theme-nav: #173f3a;
+  --theme-nav-fg: #f7faf9;
+  --theme-topbar: rgba(23, 63, 58, 0.92);
+  --theme-toast-success: var(--status-success);
+  --theme-toast-success-fg: var(--status-success-fg);
+  --theme-toast-success-border: var(--status-success-border);
+  --theme-toast-error: var(--status-error);
+  --theme-toast-error-fg: var(--status-error-fg);
+  --theme-toast-error-border: var(--status-error-border);
+}
+
+[data-theme='navy'] {
+  --theme-page: #f3f5f8;
+  --theme-surface: #ffffff;
+  --theme-surface-elevated: #ffffff;
+  --theme-border: #dce2e9;
+  --theme-border-subtle: #e6ebef;
+  --theme-input-border: #c4cedb;
+  --theme-text: #202b38;
+  --theme-text-muted: #697789;
+  --theme-secondary: #e8edf4;
+  --theme-secondary-fg: #1c2d42;
+  --theme-secondary-border: #ccd7e3;
+  --theme-secondary-hover: color-mix(in srgb, var(--theme-secondary) 86%, var(--theme-secondary-border));
+  --theme-primary: #3f5f85;
+  --theme-primary-fg: #ffffff;
+  --theme-primary-hover: #36526f;
+  --theme-primary-ring: var(--theme-primary);
+  --theme-focus-ring: var(--theme-primary);
+  --theme-muted-ring: color-mix(in srgb, var(--theme-primary) 55%, var(--theme-surface));
+  --theme-placeholder: color-mix(in srgb, var(--theme-text-muted) 70%, var(--theme-surface));
+  --theme-hover: color-mix(in srgb, var(--theme-primary) 10%, var(--theme-surface));
+  --theme-selected: color-mix(in srgb, var(--theme-primary) 16%, var(--theme-surface));
+  --theme-selected-fg: color-mix(in srgb, var(--theme-text) 30%, var(--theme-primary-hover));
+  --theme-nav: #1c2d42;
+  --theme-nav-fg: #f4f6f9;
+  --theme-topbar: rgba(28, 45, 66, 0.92);
+  --theme-toast-success: var(--status-success);
+  --theme-toast-success-fg: var(--status-success-fg);
+  --theme-toast-success-border: var(--status-success-border);
+  --theme-toast-error: var(--status-error);
+  --theme-toast-error-fg: var(--status-error-fg);
+  --theme-toast-error-border: var(--status-error-border);
+}
+
+[data-theme='slate'] {
+  --theme-page: #f4f5f9;
+  --theme-surface: #ffffff;
+  --theme-surface-elevated: #ffffff;
+  --theme-border: #e0e3ec;
+  --theme-border-subtle: #e9ecf1;
+  --theme-input-border: #c7cce6;
+  --theme-text: #252b38;
+  --theme-text-muted: #6d7384;
+  --theme-secondary: #eaecf7;
+  --theme-secondary-fg: #252f42;
+  --theme-secondary-border: #cccedd;
+  --theme-secondary-hover: color-mix(in srgb, var(--theme-secondary) 86%, var(--theme-secondary-border));
+  --theme-primary: #5865a8;
+  --theme-primary-fg: #ffffff;
+  --theme-primary-hover: #4c5891;
+  --theme-primary-ring: var(--theme-primary);
+  --theme-focus-ring: var(--theme-primary);
+  --theme-muted-ring: color-mix(in srgb, var(--theme-primary) 55%, var(--theme-surface));
+  --theme-placeholder: color-mix(in srgb, var(--theme-text-muted) 70%, var(--theme-surface));
+  --theme-hover: color-mix(in srgb, var(--theme-primary) 10%, var(--theme-surface));
+  --theme-selected: color-mix(in srgb, var(--theme-primary) 16%, var(--theme-surface));
+  --theme-selected-fg: color-mix(in srgb, var(--theme-text) 30%, var(--theme-primary-hover));
+  --theme-nav: #252f42;
+  --theme-nav-fg: #e8ecf4;
+  --theme-topbar: rgba(37, 47, 66, 0.92);
+  --theme-toast-success: var(--status-success);
+  --theme-toast-success-fg: var(--status-success-fg);
+  --theme-toast-success-border: var(--status-success-border);
+  --theme-toast-error: var(--status-error);
+  --theme-toast-error-fg: var(--status-error-fg);
+  --theme-toast-error-border: var(--status-error-border);
+}
+
+[data-theme='forest'] {
+  --theme-page: #f4f6f2;
+  --theme-surface: #ffffff;
+  --theme-surface-elevated: #ffffff;
+  --theme-border: #dfe5dc;
+  --theme-border-subtle: #e8ece5;
+  --theme-input-border: #c8d4c6;
+  --theme-text: #28342b;
+  --theme-text-muted: #707a70;
+  --theme-secondary: #e9efe8;
+  --theme-secondary-fg: #263f32;
+  --theme-secondary-border: #ccdbca;
+  --theme-secondary-hover: color-mix(in srgb, var(--theme-secondary) 86%, var(--theme-secondary-border));
+  --theme-primary: #4d755b;
+  --theme-primary-fg: #ffffff;
+  --theme-primary-hover: #43664f;
+  --theme-primary-ring: var(--theme-primary);
+  --theme-focus-ring: var(--theme-primary);
+  --theme-muted-ring: color-mix(in srgb, var(--theme-primary) 55%, var(--theme-surface));
+  --theme-placeholder: color-mix(in srgb, var(--theme-text-muted) 70%, var(--theme-surface));
+  --theme-hover: color-mix(in srgb, var(--theme-primary) 10%, var(--theme-surface));
+  --theme-selected: color-mix(in srgb, var(--theme-primary) 16%, var(--theme-surface));
+  --theme-selected-fg: color-mix(in srgb, var(--theme-text) 30%, var(--theme-primary-hover));
+  --theme-nav: #263f32;
+  --theme-nav-fg: #f4f8f4;
+  --theme-topbar: rgba(38, 63, 50, 0.92);
+  --theme-toast-success: var(--status-success);
+  --theme-toast-success-fg: var(--status-success-fg);
+  --theme-toast-success-border: var(--status-success-border);
+  --theme-toast-error: var(--status-error);
+  --theme-toast-error-fg: var(--status-error-fg);
+  --theme-toast-error-border: var(--status-error-border);
+}
+
+[data-theme='charcoal'] {
+  --theme-page: #f5f4f2;
+  --theme-surface: #ffffff;
+  --theme-surface-elevated: #ffffff;
+  --theme-border: #e4e0dc;
+  --theme-border-subtle: #ebe7e3;
+  --theme-input-border: #c7bdb7;
+  --theme-text: #292a2c;
+  --theme-text-muted: #74716f;
+  --theme-secondary: #f1e8e2;
+  --theme-secondary-fg: #292b2f;
+  --theme-secondary-border: #dcc7bc;
+  --theme-secondary-hover: color-mix(in srgb, var(--theme-secondary) 86%, var(--theme-secondary-border));
+  --theme-primary: #a96343;
+  --theme-primary-fg: #ffffff;
+  --theme-primary-hover: #93543a;
+  --theme-primary-ring: var(--theme-primary);
+  --theme-focus-ring: var(--theme-primary);
+  --theme-muted-ring: color-mix(in srgb, var(--theme-primary) 55%, var(--theme-surface));
+  --theme-placeholder: color-mix(in srgb, var(--theme-text-muted) 70%, var(--theme-surface));
+  --theme-hover: color-mix(in srgb, var(--theme-primary) 10%, var(--theme-surface));
+  --theme-selected: color-mix(in srgb, var(--theme-primary) 16%, var(--theme-surface));
+  --theme-selected-fg: color-mix(in srgb, var(--theme-text) 30%, var(--theme-primary-hover));
+  --theme-nav: #292b2f;
+  --theme-nav-fg: #f5f3f1;
+  --theme-topbar: rgba(41, 43, 47, 0.92);
+  --theme-toast-success: var(--status-success);
+  --theme-toast-success-fg: var(--status-success-fg);
+  --theme-toast-success-border: var(--status-success-border);
+  --theme-toast-error: var(--status-error);
+  --theme-toast-error-fg: var(--status-error-fg);
+  --theme-toast-error-border: var(--status-error-border);
+}
+
+[data-theme='teal'],
+[data-theme='navy'],
+[data-theme='slate'],
+[data-theme='forest'],
+[data-theme='charcoal'] {
+  --theme-surface-hover: color-mix(in srgb, var(--theme-secondary) 58%, var(--theme-surface));
+  --theme-surface-muted: color-mix(in srgb, var(--theme-secondary) 76%, var(--theme-surface));
+  --theme-navbar-background: var(--theme-nav);
+  --theme-sidebar-background: var(--theme-nav);
+
+  --theme-text-subtle: color-mix(in srgb, var(--theme-text-muted) 68%, var(--theme-surface));
+  --theme-primary-soft: color-mix(in srgb, var(--theme-primary) 24%, var(--theme-surface));
+
+  --theme-nav-muted: color-mix(in srgb, var(--theme-nav-fg) 72%, var(--theme-nav));
+  --theme-nav-subtle: color-mix(in srgb, var(--theme-nav-fg) 52%, var(--theme-nav));
+  --theme-nav-item-fg: color-mix(in srgb, var(--theme-nav-fg) 90%, var(--theme-nav));
+  --theme-nav-item-hover-fg: var(--theme-nav-fg);
+  --theme-nav-icon: color-mix(in srgb, var(--theme-nav-fg) 72%, var(--theme-nav));
+  --theme-nav-icon-hover: var(--theme-nav-fg);
+  --theme-nav-control-hover-fg: var(--theme-nav-fg);
+  --theme-nav-hover: color-mix(in srgb, var(--theme-nav-fg) 8%, var(--theme-nav));
+  --theme-nav-border: color-mix(in srgb, var(--theme-nav-fg) 17%, var(--theme-nav));
+  --theme-nav-border-subtle: color-mix(in srgb, var(--theme-nav-fg) 10%, var(--theme-nav));
+  --theme-nav-active-bg: color-mix(in srgb, var(--theme-primary) 62%, var(--theme-nav));
+  --theme-nav-active-fg: var(--theme-primary-fg);
+  --theme-nav-active-icon: var(--theme-primary-fg);
+
+  --theme-topbar-fg: var(--theme-nav-fg);
+  --theme-topbar-muted: color-mix(in srgb, var(--theme-nav-fg) 72%, var(--theme-nav));
+  --theme-topbar-subtle: color-mix(in srgb, var(--theme-nav-fg) 52%, var(--theme-nav));
+  --theme-topbar-hover: color-mix(in srgb, var(--theme-nav-fg) 10%, var(--theme-nav));
+  --theme-topbar-border: color-mix(in srgb, var(--theme-nav-fg) 17%, var(--theme-nav));
+  --theme-topbar-icon: var(--theme-nav-fg);
+
+  --theme-toolbar: color-mix(in srgb, var(--theme-secondary) 74%, transparent);
+  --theme-overlay: color-mix(in srgb, var(--theme-text) 38%, transparent);
+  --theme-scrollbar-thumb: color-mix(in srgb, var(--theme-border) 70%, var(--theme-text-muted));
+  --theme-scrollbar-thumb-hover: var(--theme-input-border);
+
+  --theme-toast-info: var(--status-info);
+  --theme-toast-info-fg: var(--status-info-fg);
+  --theme-toast-info-border: var(--status-info-border);
+
+  /* Legacy slate scale -> theme neutrals. */
+  --theme-slate-50: var(--theme-page);
+  --theme-slate-100: var(--theme-surface-muted);
+  --theme-slate-200: var(--theme-border);
+  --theme-slate-300: var(--theme-input-border);
+  --theme-slate-400: var(--theme-text-subtle);
+  --theme-slate-500: var(--theme-text-muted);
+  --theme-slate-600: color-mix(in srgb, var(--theme-text-muted) 60%, var(--theme-text));
+  --theme-slate-700: color-mix(in srgb, var(--theme-text-muted) 25%, var(--theme-text));
+  --theme-slate-800: var(--theme-text);
+  --theme-slate-900: var(--theme-text);
+
+  /* Legacy indigo scale -> theme primary. */
+  --theme-indigo-50: var(--theme-secondary);
+  --theme-indigo-100: var(--theme-secondary-border);
+  --theme-indigo-200: var(--theme-primary-soft);
+  --theme-indigo-300: color-mix(in srgb, var(--theme-primary) 38%, var(--theme-surface));
+  --theme-indigo-400: color-mix(in srgb, var(--theme-primary) 62%, var(--theme-surface));
+  --theme-indigo-500: var(--theme-primary);
+  --theme-indigo-600: var(--theme-primary);
+  --theme-indigo-700: var(--theme-primary-hover);
+  --theme-indigo-800: color-mix(in srgb, var(--theme-primary-hover) 82%, #000000);
+  --theme-indigo-900: color-mix(in srgb, var(--theme-primary-hover) 68%, #000000);
+}
+
 @layer base {
   * {
     @apply border-border;
   }
+  html {
+    background-color: var(--theme-page);
+  }
   body {
-    background-color: #f8fafc;
-    color: #0f172a;
+    background-color: var(--theme-page);
+    color: var(--theme-text);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     @apply font-sans;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold text-slate-900 tracking-tight;
+    @apply font-semibold text-theme-text tracking-tight;
   }
   label {
     @apply text-sm font-medium text-slate-700 mb-1 block;
   }
   input, select, textarea {
-    @apply w-full px-3 py-2 border border-slate-200 rounded-md bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all disabled:bg-slate-50;
+    @apply w-full px-3 py-2 border border-theme-input-border rounded-md bg-theme-surface text-theme-text placeholder-theme-placeholder focus:outline-none focus:ring-2 focus:ring-theme-focus-ring focus:border-transparent transition-all disabled:bg-theme-page;
   }
   button {
     @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
@@ -46,7 +513,6 @@
   }
 }
 
-/* Custom modern scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -55,11 +521,11 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--theme-scrollbar-thumb);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: var(--theme-scrollbar-thumb-hover);
 }
 
 /* Micro-interactions & motion */
@@ -98,7 +564,7 @@
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 .animate-fade-in-up {
@@ -143,4 +609,15 @@
 }
 .animate-dialog-in {
   animation: dialog-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-toast-in,
+  .animate-toast-progress,
+  .animate-fade-in-up,
+  .animate-dropdown-in,
+  .animate-overlay-in,
+  .animate-dialog-in {
+    animation-duration: 0.01ms !important;
+  }
 }

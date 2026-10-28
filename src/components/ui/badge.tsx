@@ -9,10 +9,12 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 
 const variants: Record<BadgeVariant, string> = {
   default: 'bg-slate-100 text-slate-700 border-slate-200',
-  success: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-  warning: 'bg-amber-50 text-amber-700 border-amber-200',
-  danger: 'bg-red-50 text-red-700 border-red-200',
-  info: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+  success:
+    'bg-status-success text-status-success-fg border-status-success-border',
+  warning:
+    'bg-status-warning text-status-warning-fg border-status-warning-border',
+  danger: 'bg-status-error text-status-error-fg border-status-error-border',
+  info: 'bg-status-info text-status-info-fg border-status-info-border',
 };
 
 export function Badge({ variant = 'default', className, ...props }: BadgeProps) {

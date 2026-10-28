@@ -14,16 +14,16 @@ export function AvatarDropdown({ onSignout }: { onSignout: () => void }) {
     <div className="relative inline-block">
       <button
         onClick={() => setOpen((prev) => !prev)}
-        className="flex items-center gap-2 rounded-lg px-2 py-2 text-slate-600 transition-colors hover:bg-slate-100 focus:outline-none"
+        className="flex items-center gap-2 rounded-lg px-2 py-2 text-theme-topbar-muted transition-colors hover:bg-theme-topbar-hover focus:outline-none"
         aria-label="Account menu"
         aria-haspopup="menu"
         aria-expanded={open}
         title={orgEmail || 'Account menu'}
       >
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-xs font-semibold text-white shadow-sm ring-1 ring-white ring-offset-1 ring-offset-indigo-600">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-theme-primary text-xs font-semibold text-theme-primary-fg shadow-sm ring-1 ring-theme-topbar ring-offset-1 ring-offset-theme-primary">
           {orgEmail ? initial : <Building2 className="h-4 w-4" />}
         </div>
-        <ChevronDown className="h-4 w-4 shrink-0 text-slate-400" />
+        <ChevronDown className="h-4 w-4 shrink-0 text-theme-topbar-subtle" />
       </button>
 
       {open && (

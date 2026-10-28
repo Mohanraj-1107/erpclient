@@ -186,6 +186,30 @@ The `JwtFilter` must allow `OPTIONS` preflight requests without JWT validation.
 | Text Primary | — | `text-slate-900` |
 | Text Secondary | — | `text-slate-500` |
 
+### Application Themes
+
+The application ships with six switchable themes. **Existing Default Theme** is the original theme and remains the default; its brand colors are reproduced by the default token values. Themes are selected from the topbar (or the login screen), applied immediately through `data-theme` on `<html>`, and persisted in `localStorage` under `erp.theme`.
+
+| Theme | Navbar / Sidebar | Navbar Text / Icons | Page Background | Surface | Primary | Primary Hover | Secondary | Borders | Primary Text | Secondary Text |
+|-------|------------------|---------------------|-----------------|---------|---------|---------------|-----------|---------|--------------|----------------|
+| Existing Default Theme | `#FFFFFF` | `#0F172A` | `#F8FAFC` | `#FFFFFF` | `#4F46E5` | `#4338CA` | `#F1F5F9` | `#E2E8F0` | `#0F172A` | `#64748B` |
+| Teal Professional | `#173F3A` | `#F7FAF9` | `#F3F6F5` | `#FFFFFF` | `#376F68` | `#2F5D57` | `#E8F0ED` | `#DDE5E1` | `#24332F` | `#687873` |
+| Navy Corporate | `#1C2D42` | `#F4F6F9` | `#F3F5F8` | `#FFFFFF` | `#3F5F85` | `#36526F` | `#E8EDF4` | `#DCE2E9` | `#202B38` | `#697789` |
+| Slate & Indigo | `#252F42` | `#E8ECF4` | `#F4F5F9` | `#FFFFFF` | `#5865A8` | `#4C5891` | `#EAECF7` | `#E0E3EC` | `#252B38` | `#6D7384` |
+| Forest Green | `#263F32` | `#F4F8F4` | `#F4F6F2` | `#FFFFFF` | `#4D755B` | `#43664F` | `#E9EFE8` | `#DFE5DC` | `#28342B` | `#707A70` |
+| Charcoal & Copper | `#292B2F` | `#F5F3F1` | `#F5F4F2` | `#FFFFFF` | `#A96343` | `#93543A` | `#F1E8E2` | `#E4E0DC` | `#292A2C` | `#74716F` |
+
+Input borders are slightly stronger than surface borders in the five new themes and are defined per theme in `src/lib/themes.ts` and `src/index.css`. The topbar of each new theme is a subtle translucent wash of the navigation color (`backdrop-blur`-ready). Business status colors are intentionally shared by all six themes:
+
+| Status | Background | Text | Border |
+|--------|------------|------|--------|
+| Warning / Low Stock | `#FEF3C7` | `#92400E` | `#FCD34D` |
+| Information / On Order | `#DBEAFE` | `#1E40AF` | `#93C5FD` |
+| In Stock | `#DCFCE7` | `#166534` | `#86EFAC` |
+| Out of Stock | `#FEE2E2` | `#991B1B` | `#FCA5A5` |
+
+Theme configuration lives in `src/lib/themes.ts`, the provider/selector in `src/components/theme/`, and the CSS custom properties in `src/index.css`. Shared UI components consume semantic tokens such as `bg-theme-primary`, `border-theme-border`, and `text-theme-text-muted`. The active theme also re-maps the existing Tailwind `indigo` (brand) and `slate` (neutral) scales, so older page-level utility classes inherit the theme automatically.
+
 ---
 
 ## Development Plan
