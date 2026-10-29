@@ -246,188 +246,152 @@
 }
 
 [data-theme='teal'] {
-  --theme-page: #f3f6f5;
+  --theme-page: #f7f9f9;
   --theme-surface: #ffffff;
   --theme-surface-elevated: #ffffff;
-  --theme-border: #dde5e1;
-  --theme-border-subtle: #e7edea;
-  --theme-input-border: #c6d1cc;
-  --theme-text: #24332f;
-  --theme-text-muted: #687873;
-  --theme-secondary: #e8f0ed;
-  --theme-secondary-fg: #173f3a;
-  --theme-secondary-border: #cddbd6;
-  --theme-secondary-hover: color-mix(in srgb, var(--theme-secondary) 86%, var(--theme-secondary-border));
-  --theme-primary: #376f68;
-  --theme-primary-fg: #ffffff;
-  --theme-primary-hover: #2f5d57;
-  --theme-primary-ring: var(--theme-primary);
-  --theme-focus-ring: var(--theme-primary);
-  --theme-muted-ring: color-mix(in srgb, var(--theme-primary) 55%, var(--theme-surface));
-  --theme-placeholder: color-mix(in srgb, var(--theme-text-muted) 70%, var(--theme-surface));
-  --theme-hover: color-mix(in srgb, var(--theme-primary) 10%, var(--theme-surface));
-  --theme-selected: color-mix(in srgb, var(--theme-primary) 16%, var(--theme-surface));
-  --theme-selected-fg: color-mix(in srgb, var(--theme-text) 30%, var(--theme-primary-hover));
-  --theme-nav: #173f3a;
-  --theme-nav-fg: #f7faf9;
-  --theme-topbar: rgba(23, 63, 58, 0.92);
-  --theme-toast-success: var(--status-success);
-  --theme-toast-success-fg: var(--status-success-fg);
-  --theme-toast-success-border: var(--status-success-border);
-  --theme-toast-error: var(--status-error);
-  --theme-toast-error-fg: var(--status-error-fg);
-  --theme-toast-error-border: var(--status-error-border);
+  --theme-border: #e2e9e8;
+  --theme-border-subtle: #edf2f1;
+  --theme-input-border: #cbd5d4;
+  --theme-text: #1c2b2a;
+  --theme-text-muted: #5b6e6d;
+  --theme-secondary: #ffffff;
+  --theme-secondary-fg: #0f3d3a;
+  --theme-secondary-border: #bfd9d5;
+  --theme-primary: #0e7c72;
+  --theme-primary-hover: #0b655d;
+  --theme-nav: #eaf4f3;
+  --theme-nav-fg: #0f3d3a;
+  --theme-nav-border: #cbe1de;
+  --theme-hover: #f0f6f5;
+  --theme-selected: #dff0ed;
+  --theme-selected-fg: #0b5f58;
+  --theme-nav-active-bg: #d5eae7;
+  --theme-nav-active-fg: #0b5f58;
 }
 
 [data-theme='navy'] {
-  --theme-page: #f3f5f8;
+  --theme-page: #f6f8fb;
   --theme-surface: #ffffff;
   --theme-surface-elevated: #ffffff;
-  --theme-border: #dce2e9;
-  --theme-border-subtle: #e6ebef;
-  --theme-input-border: #c4cedb;
-  --theme-text: #202b38;
-  --theme-text-muted: #697789;
-  --theme-secondary: #e8edf4;
-  --theme-secondary-fg: #1c2d42;
-  --theme-secondary-border: #ccd7e3;
-  --theme-secondary-hover: color-mix(in srgb, var(--theme-secondary) 86%, var(--theme-secondary-border));
-  --theme-primary: #3f5f85;
-  --theme-primary-fg: #ffffff;
-  --theme-primary-hover: #36526f;
-  --theme-primary-ring: var(--theme-primary);
-  --theme-focus-ring: var(--theme-primary);
-  --theme-muted-ring: color-mix(in srgb, var(--theme-primary) 55%, var(--theme-surface));
-  --theme-placeholder: color-mix(in srgb, var(--theme-text-muted) 70%, var(--theme-surface));
-  --theme-hover: color-mix(in srgb, var(--theme-primary) 10%, var(--theme-surface));
-  --theme-selected: color-mix(in srgb, var(--theme-primary) 16%, var(--theme-surface));
-  --theme-selected-fg: color-mix(in srgb, var(--theme-text) 30%, var(--theme-primary-hover));
-  --theme-nav: #1c2d42;
-  --theme-nav-fg: #f4f6f9;
-  --theme-topbar: rgba(28, 45, 66, 0.92);
-  --theme-toast-success: var(--status-success);
-  --theme-toast-success-fg: var(--status-success-fg);
-  --theme-toast-success-border: var(--status-success-border);
-  --theme-toast-error: var(--status-error);
-  --theme-toast-error-fg: var(--status-error-fg);
-  --theme-toast-error-border: var(--status-error-border);
+  --theme-border: #e3e9f1;
+  --theme-border-subtle: #eef2f7;
+  --theme-input-border: #ccd6e4;
+  --theme-text: #1c2838;
+  --theme-text-muted: #5d6b80;
+  --theme-secondary: #ffffff;
+  --theme-secondary-fg: #1f3657;
+  --theme-secondary-border: #c6d4e6;
+  --theme-primary: #2f5ea8;
+  --theme-primary-hover: #27508f;
+  --theme-nav: #eef3fa;
+  --theme-nav-fg: #1f3657;
+  --theme-nav-border: #d3dfee;
+  --theme-hover: #f2f6fb;
+  --theme-selected: #e4edf9;
+  --theme-selected-fg: #1b4c8c;
+  --theme-nav-active-bg: #dce8f8;
+  --theme-nav-active-fg: #1b4c8c;
 }
 
 [data-theme='slate'] {
-  --theme-page: #f4f5f9;
+  --theme-page: #fafafc;
   --theme-surface: #ffffff;
   --theme-surface-elevated: #ffffff;
-  --theme-border: #e0e3ec;
-  --theme-border-subtle: #e9ecf1;
-  --theme-input-border: #c7cce6;
-  --theme-text: #252b38;
-  --theme-text-muted: #6d7384;
-  --theme-secondary: #eaecf7;
-  --theme-secondary-fg: #252f42;
-  --theme-secondary-border: #cccedd;
-  --theme-secondary-hover: color-mix(in srgb, var(--theme-secondary) 86%, var(--theme-secondary-border));
-  --theme-primary: #5865a8;
-  --theme-primary-fg: #ffffff;
-  --theme-primary-hover: #4c5891;
-  --theme-primary-ring: var(--theme-primary);
-  --theme-focus-ring: var(--theme-primary);
-  --theme-muted-ring: color-mix(in srgb, var(--theme-primary) 55%, var(--theme-surface));
-  --theme-placeholder: color-mix(in srgb, var(--theme-text-muted) 70%, var(--theme-surface));
-  --theme-hover: color-mix(in srgb, var(--theme-primary) 10%, var(--theme-surface));
-  --theme-selected: color-mix(in srgb, var(--theme-primary) 16%, var(--theme-surface));
-  --theme-selected-fg: color-mix(in srgb, var(--theme-text) 30%, var(--theme-primary-hover));
-  --theme-nav: #252f42;
-  --theme-nav-fg: #e8ecf4;
-  --theme-topbar: rgba(37, 47, 66, 0.92);
-  --theme-toast-success: var(--status-success);
-  --theme-toast-success-fg: var(--status-success-fg);
-  --theme-toast-success-border: var(--status-success-border);
-  --theme-toast-error: var(--status-error);
-  --theme-toast-error-fg: var(--status-error-fg);
-  --theme-toast-error-border: var(--status-error-border);
+  --theme-border: #e6e7ee;
+  --theme-border-subtle: #eff0f5;
+  --theme-input-border: #d3d6e0;
+  --theme-text: #23262f;
+  --theme-text-muted: #62677a;
+  --theme-secondary: #ffffff;
+  --theme-secondary-fg: #343a4d;
+  --theme-secondary-border: #d2d5e0;
+  --theme-primary: #4a56b8;
+  --theme-primary-hover: #3e49a0;
+  --theme-nav: #f2f3f8;
+  --theme-nav-fg: #2a2e3c;
+  --theme-nav-border: #dcdee9;
+  --theme-hover: #f5f5fa;
+  --theme-selected: #eaecf8;
+  --theme-selected-fg: #3a45a8;
+  --theme-nav-active-bg: #e4e6f6;
+  --theme-nav-active-fg: #3a45a8;
 }
 
 [data-theme='forest'] {
-  --theme-page: #f4f6f2;
+  --theme-page: #f8faf7;
   --theme-surface: #ffffff;
   --theme-surface-elevated: #ffffff;
-  --theme-border: #dfe5dc;
-  --theme-border-subtle: #e8ece5;
-  --theme-input-border: #c8d4c6;
-  --theme-text: #28342b;
-  --theme-text-muted: #707a70;
-  --theme-secondary: #e9efe8;
-  --theme-secondary-fg: #263f32;
-  --theme-secondary-border: #ccdbca;
-  --theme-secondary-hover: color-mix(in srgb, var(--theme-secondary) 86%, var(--theme-secondary-border));
-  --theme-primary: #4d755b;
-  --theme-primary-fg: #ffffff;
-  --theme-primary-hover: #43664f;
-  --theme-primary-ring: var(--theme-primary);
-  --theme-focus-ring: var(--theme-primary);
-  --theme-muted-ring: color-mix(in srgb, var(--theme-primary) 55%, var(--theme-surface));
-  --theme-placeholder: color-mix(in srgb, var(--theme-text-muted) 70%, var(--theme-surface));
-  --theme-hover: color-mix(in srgb, var(--theme-primary) 10%, var(--theme-surface));
-  --theme-selected: color-mix(in srgb, var(--theme-primary) 16%, var(--theme-surface));
-  --theme-selected-fg: color-mix(in srgb, var(--theme-text) 30%, var(--theme-primary-hover));
-  --theme-nav: #263f32;
-  --theme-nav-fg: #f4f8f4;
-  --theme-topbar: rgba(38, 63, 50, 0.92);
-  --theme-toast-success: var(--status-success);
-  --theme-toast-success-fg: var(--status-success-fg);
-  --theme-toast-success-border: var(--status-success-border);
-  --theme-toast-error: var(--status-error);
-  --theme-toast-error-fg: var(--status-error-fg);
-  --theme-toast-error-border: var(--status-error-border);
+  --theme-border: #e4eae2;
+  --theme-border-subtle: #eff3ee;
+  --theme-input-border: #cdd8cb;
+  --theme-text: #26332a;
+  --theme-text-muted: #5f6e62;
+  --theme-secondary: #ffffff;
+  --theme-secondary-fg: #2f4634;
+  --theme-secondary-border: #cbdac9;
+  --theme-primary: #4a7c59;
+  --theme-primary-hover: #3c6749;
+  --theme-nav: #edf2ec;
+  --theme-nav-fg: #27362a;
+  --theme-nav-border: #d6e0d4;
+  --theme-hover: #f2f6f1;
+  --theme-selected: #e4efe3;
+  --theme-selected-fg: #2e6340;
+  --theme-nav-active-bg: #dce9db;
+  --theme-nav-active-fg: #2e6340;
 }
 
 [data-theme='charcoal'] {
-  --theme-page: #f5f4f2;
+  --theme-page: #faf9f7;
   --theme-surface: #ffffff;
   --theme-surface-elevated: #ffffff;
-  --theme-border: #e4e0dc;
-  --theme-border-subtle: #ebe7e3;
-  --theme-input-border: #c7bdb7;
-  --theme-text: #292a2c;
-  --theme-text-muted: #74716f;
-  --theme-secondary: #f1e8e2;
-  --theme-secondary-fg: #292b2f;
-  --theme-secondary-border: #dcc7bc;
-  --theme-secondary-hover: color-mix(in srgb, var(--theme-secondary) 86%, var(--theme-secondary-border));
-  --theme-primary: #a96343;
-  --theme-primary-fg: #ffffff;
-  --theme-primary-hover: #93543a;
-  --theme-primary-ring: var(--theme-primary);
-  --theme-focus-ring: var(--theme-primary);
-  --theme-muted-ring: color-mix(in srgb, var(--theme-primary) 55%, var(--theme-surface));
-  --theme-placeholder: color-mix(in srgb, var(--theme-text-muted) 70%, var(--theme-surface));
-  --theme-hover: color-mix(in srgb, var(--theme-primary) 10%, var(--theme-surface));
-  --theme-selected: color-mix(in srgb, var(--theme-primary) 16%, var(--theme-surface));
-  --theme-selected-fg: color-mix(in srgb, var(--theme-text) 30%, var(--theme-primary-hover));
-  --theme-nav: #292b2f;
-  --theme-nav-fg: #f5f3f1;
-  --theme-topbar: rgba(41, 43, 47, 0.92);
-  --theme-toast-success: var(--status-success);
-  --theme-toast-success-fg: var(--status-success-fg);
-  --theme-toast-success-border: var(--status-success-border);
-  --theme-toast-error: var(--status-error);
-  --theme-toast-error-fg: var(--status-error-fg);
-  --theme-toast-error-border: var(--status-error-border);
+  --theme-border: #e8e4dd;
+  --theme-border-subtle: #f0ede8;
+  --theme-input-border: #d6cfc5;
+  --theme-text: #2b251e;
+  --theme-text-muted: #6b6358;
+  --theme-secondary: #ffffff;
+  --theme-secondary-fg: #3a332b;
+  --theme-secondary-border: #dbd4ca;
+  --theme-primary: #a15a33;
+  --theme-primary-hover: #874a29;
+  --theme-nav: #f1efeb;
+  --theme-nav-fg: #322c25;
+  --theme-nav-border: #dfdad2;
+  --theme-hover: #f6f4f1;
+  --theme-selected: #f0e8df;
+  --theme-selected-fg: #8a4a26;
+  --theme-nav-active-bg: #ede2d7;
+  --theme-nav-active-fg: #8a4a26;
 }
 
 [data-theme='teal'],
 [data-theme='navy'],
-[data-theme='slate'],
 [data-theme='forest'],
+[data-theme='slate'],
 [data-theme='charcoal'] {
-  --theme-surface-hover: color-mix(in srgb, var(--theme-secondary) 58%, var(--theme-surface));
-  --theme-surface-muted: color-mix(in srgb, var(--theme-secondary) 76%, var(--theme-surface));
+  /* Light chrome: solid tinted navbar, topbar shares the same tint. */
+  --theme-topbar: var(--theme-nav);
   --theme-navbar-background: var(--theme-nav);
   --theme-sidebar-background: var(--theme-nav);
+  --theme-nav-border-subtle: var(--theme-border-subtle);
 
+  /* Actions & states. */
+  --theme-primary-fg: #ffffff;
+  --theme-primary-ring: var(--theme-primary);
+  --theme-focus-ring: color-mix(in srgb, var(--theme-primary) 25%, transparent);
+  --theme-muted-ring: color-mix(in srgb, var(--theme-primary) 55%, var(--theme-surface));
+  --theme-secondary-hover: var(--theme-hover);
+  --theme-selected-fg: var(--theme-nav-active-fg);
+  --theme-primary-soft: color-mix(in srgb, var(--theme-primary) 20%, var(--theme-surface));
+
+  /* Neutral tints. */
   --theme-text-subtle: color-mix(in srgb, var(--theme-text-muted) 68%, var(--theme-surface));
-  --theme-primary-soft: color-mix(in srgb, var(--theme-primary) 24%, var(--theme-surface));
+  --theme-placeholder: color-mix(in srgb, var(--theme-text-muted) 70%, var(--theme-surface));
+  --theme-surface-hover: color-mix(in srgb, var(--theme-hover) 60%, var(--theme-surface));
+  --theme-surface-muted: var(--theme-hover);
 
+  /* Navigation text/icons on the light chrome. */
   --theme-nav-muted: color-mix(in srgb, var(--theme-nav-fg) 72%, var(--theme-nav));
   --theme-nav-subtle: color-mix(in srgb, var(--theme-nav-fg) 52%, var(--theme-nav));
   --theme-nav-item-fg: color-mix(in srgb, var(--theme-nav-fg) 90%, var(--theme-nav));
@@ -435,28 +399,49 @@
   --theme-nav-icon: color-mix(in srgb, var(--theme-nav-fg) 72%, var(--theme-nav));
   --theme-nav-icon-hover: var(--theme-nav-fg);
   --theme-nav-control-hover-fg: var(--theme-nav-fg);
-  --theme-nav-hover: color-mix(in srgb, var(--theme-nav-fg) 8%, var(--theme-nav));
-  --theme-nav-border: color-mix(in srgb, var(--theme-nav-fg) 17%, var(--theme-nav));
-  --theme-nav-border-subtle: color-mix(in srgb, var(--theme-nav-fg) 10%, var(--theme-nav));
-  --theme-nav-active-bg: color-mix(in srgb, var(--theme-primary) 62%, var(--theme-nav));
-  --theme-nav-active-fg: var(--theme-primary-fg);
-  --theme-nav-active-icon: var(--theme-primary-fg);
+  --theme-nav-hover: color-mix(in srgb, var(--theme-nav-fg) 6%, var(--theme-nav));
+  --theme-nav-active-icon: var(--theme-nav-active-fg);
 
   --theme-topbar-fg: var(--theme-nav-fg);
-  --theme-topbar-muted: color-mix(in srgb, var(--theme-nav-fg) 72%, var(--theme-nav));
-  --theme-topbar-subtle: color-mix(in srgb, var(--theme-nav-fg) 52%, var(--theme-nav));
-  --theme-topbar-hover: color-mix(in srgb, var(--theme-nav-fg) 10%, var(--theme-nav));
-  --theme-topbar-border: color-mix(in srgb, var(--theme-nav-fg) 17%, var(--theme-nav));
+  --theme-topbar-muted: var(--theme-nav-muted);
+  --theme-topbar-subtle: var(--theme-nav-subtle);
+  --theme-topbar-hover: var(--theme-nav-hover);
+  --theme-topbar-border: var(--theme-nav-border);
   --theme-topbar-icon: var(--theme-nav-fg);
 
-  --theme-toolbar: color-mix(in srgb, var(--theme-secondary) 74%, transparent);
+  --theme-toolbar: var(--theme-hover);
   --theme-overlay: color-mix(in srgb, var(--theme-text) 38%, transparent);
   --theme-scrollbar-thumb: color-mix(in srgb, var(--theme-border) 70%, var(--theme-text-muted));
   --theme-scrollbar-thumb-hover: var(--theme-input-border);
 
+  /* Per-theme toast surfaces driven by the theme's status palette. */
+  --theme-toast-success: var(--status-success);
+  --theme-toast-success-fg: var(--status-success-fg);
+  --theme-toast-success-border: var(--status-success-border);
+  --theme-toast-error: var(--status-error);
+  --theme-toast-error-fg: var(--status-error-fg);
+  --theme-toast-error-border: var(--status-error-border);
   --theme-toast-info: var(--status-info);
   --theme-toast-info-fg: var(--status-info-fg);
   --theme-toast-info-border: var(--status-info-border);
+
+  /*
+   * Shared operational status palette, identical across the five enterprise
+   * themes so operators learn one mapping. The protected default theme keeps
+   * its original status colors from `:root`.
+   */
+  --status-success: #ecfaf0;
+  --status-success-fg: #11693d;
+  --status-success-border: #bbe6cb;
+  --status-warning: #fef6e7;
+  --status-warning-fg: #8a5a08;
+  --status-warning-border: #f4deac;
+  --status-error: #fdf1f0;
+  --status-error-fg: #a3302a;
+  --status-error-border: #f2c9c5;
+  --status-info: #edf4fc;
+  --status-info-fg: #1b5894;
+  --status-info-border: #c4dcf3;
 
   /* Legacy slate scale -> theme neutrals. */
   --theme-slate-50: var(--theme-page);
@@ -471,7 +456,7 @@
   --theme-slate-900: var(--theme-text);
 
   /* Legacy indigo scale -> theme primary. */
-  --theme-indigo-50: var(--theme-secondary);
+  --theme-indigo-50: color-mix(in srgb, var(--theme-primary) 8%, var(--theme-surface));
   --theme-indigo-100: var(--theme-secondary-border);
   --theme-indigo-200: var(--theme-primary-soft);
   --theme-indigo-300: color-mix(in srgb, var(--theme-primary) 38%, var(--theme-surface));

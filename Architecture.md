@@ -273,7 +273,7 @@ Build these base UI components first in `src/components/ui/`:
 
 ### 5.5 Theme System
 
-The application supports six application-wide themes: the original **Existing Default Theme** plus five additional muted enterprise palettes. The original theme is the default and its brand tokens match the existing indigo / slate styling byte-for-byte.
+The application supports six application-wide themes: the original **Existing Default Theme** plus five muted enterprise palettes (Harbor Teal, Meridian Blue, Sage Field, Graphite Indigo, Warehouse Stone). The original theme is the default and its brand tokens match the existing indigo / slate styling byte-for-byte.
 
 | File | Responsibility |
 |------|----------------|
@@ -289,9 +289,9 @@ The application supports six application-wide themes: the original **Existing De
 - An inline bootstrap script in `index.html` applies the saved theme before first paint to prevent flicker.
 - When no preference exists, `original` is used.
 - The original theme (`original`) defines no palette override block, so its navigation, backgrounds, primary color, and typography render with the existing values. Legacy `slate-*` / `indigo-*` utilities resolve through indirection variables (`--theme-slate-*`, `--theme-indigo-*`) whose default values are the byte-exact Tailwind colors.
-- The five additional themes override the semantic tokens: navigation (solid) and topbar (subtle translucent wash), page, surface, primary/hover, secondary, borders, inputs, text, and toast colors, plus derived hover/selected/overlay/shadow values via `color-mix`.
+- The five enterprise themes use light chrome: a tinted navbar with dark text (`--theme-nav` / `--theme-nav-fg`), a matching topbar tint, per-theme navbar bottom border, page/surface/border/input tokens, primary+hover, white secondary buttons with tinted borders, active-nav tint, hover/selected-row tints, a 25%-opacity focus ring, and toast surfaces driven by the theme's status palette. Derived states use `color-mix`.
 - Shared components (`Button`, `Input`, `Select`, `Card`, `Table`, `Badge`, `Alert`, `Toast`, dialogs, and layouts) consume those tokens. The existing `indigo` and `slate` Tailwind scales are also re-mapped for legacy page-level utility classes, so no component needs a theme-specific copy.
-- Toast surfaces use the per-theme success/error colors (shared status palette in the five new themes). Status badges, alerts, and inventory indicators use a shared semantic status palette (`warning`, `info`, `success`, `error`) that is independent of the selected brand theme.
+- Status badges, alerts, and inventory indicators use a shared operational status palette (In Stock / Low Stock / Out of Stock / On Order) that is identical across the five enterprise themes; the default theme keeps its original legacy status palette.
 - Animations respect `prefers-reduced-motion`.
 
 The theme selector is available in the authenticated topbar and on the login screen.

@@ -188,25 +188,27 @@ The `JwtFilter` must allow `OPTIONS` preflight requests without JWT validation.
 
 ### Application Themes
 
-The application ships with six switchable themes. **Existing Default Theme** is the original theme and remains the default; its brand colors are reproduced by the default token values. Themes are selected from the topbar (or the login screen), applied immediately through `data-theme` on `<html>`, and persisted in `localStorage` under `erp.theme`.
+The application ships with six switchable themes. **Existing Default Theme** is the original theme and remains the default; its brand colors are reproduced by the default token values and are never modified. Themes are selected from the topbar (or the login screen), applied immediately through `data-theme` on `<html>`, and persisted in `localStorage` under `erp.theme`.
 
-| Theme | Navbar / Sidebar | Navbar Text / Icons | Page Background | Surface | Primary | Primary Hover | Secondary | Borders | Primary Text | Secondary Text |
-|-------|------------------|---------------------|-----------------|---------|---------|---------------|-----------|---------|--------------|----------------|
-| Existing Default Theme | `#FFFFFF` | `#0F172A` | `#F8FAFC` | `#FFFFFF` | `#4F46E5` | `#4338CA` | `#F1F5F9` | `#E2E8F0` | `#0F172A` | `#64748B` |
-| Teal Professional | `#173F3A` | `#F7FAF9` | `#F3F6F5` | `#FFFFFF` | `#376F68` | `#2F5D57` | `#E8F0ED` | `#DDE5E1` | `#24332F` | `#687873` |
-| Navy Corporate | `#1C2D42` | `#F4F6F9` | `#F3F5F8` | `#FFFFFF` | `#3F5F85` | `#36526F` | `#E8EDF4` | `#DCE2E9` | `#202B38` | `#697789` |
-| Slate & Indigo | `#252F42` | `#E8ECF4` | `#F4F5F9` | `#FFFFFF` | `#5865A8` | `#4C5891` | `#EAECF7` | `#E0E3EC` | `#252B38` | `#6D7384` |
-| Forest Green | `#263F32` | `#F4F8F4` | `#F4F6F2` | `#FFFFFF` | `#4D755B` | `#43664F` | `#E9EFE8` | `#DFE5DC` | `#28342B` | `#707A70` |
-| Charcoal & Copper | `#292B2F` | `#F5F3F1` | `#F5F4F2` | `#FFFFFF` | `#A96343` | `#93543A` | `#F1E8E2` | `#E4E0DC` | `#292A2C` | `#74716F` |
+| Theme | Navbar / Sidebar | Navbar Text / Icons | Navbar Border | Page Background | Surface | Primary | Primary Hover | Secondary Bg / Text / Border | Border / Divider | Input Border | Primary Text | Secondary Text |
+|-------|------------------|---------------------|---------------|-----------------|---------|---------|---------------|-------------------------------|------------------|--------------|--------------|----------------|
+| Existing Default Theme | `#FFFFFF` | `#0F172A` | — | `#F8FAFC` | `#FFFFFF` | `#4F46E5` | `#4338CA` | `#F1F5F9` / `#334155` / — | `#E2E8F0` | `#E2E8F0` | `#0F172A` | `#64748B` |
+| Harbor Teal | `#EAF4F3` | `#0F3D3A` | `#CBE1DE` | `#F7F9F9` | `#FFFFFF` | `#0E7C72` | `#0B655D` | `#FFFFFF` / `#0F3D3A` / `#BFD9D5` | `#E2E9E8` / `#EDF2F1` | `#CBD5D4` | `#1C2B2A` | `#5B6E6D` |
+| Meridian Blue | `#EEF3FA` | `#1F3657` | `#D3DFEE` | `#F6F8FB` | `#FFFFFF` | `#2F5EA8` | `#27508F` | `#FFFFFF` / `#1F3657` / `#C6D4E6` | `#E3E9F1` / `#EEF2F7` | `#CCD6E4` | `#1C2838` | `#5D6B80` |
+| Sage Field | `#EDF2EC` | `#27362A` | `#D6E0D4` | `#F8FAF7` | `#FFFFFF` | `#4A7C59` | `#3C6749` | `#FFFFFF` / `#2F4634` / `#CBDAC9` | `#E4EAE2` / `#EFF3EE` | `#CDD8CB` | `#26332A` | `#5F6E62` |
+| Graphite Indigo | `#F2F3F8` | `#2A2E3C` | `#DCDEE9` | `#FAFAFC` | `#FFFFFF` | `#4A56B8` | `#3E49A0` | `#FFFFFF` / `#343A4D` / `#D2D5E0` | `#E6E7EE` / `#EFF0F5` | `#D3D6E0` | `#23262F` | `#62677A` |
+| Warehouse Stone | `#F1EFEB` | `#322C25` | `#DFDAD2` | `#FAF9F7` | `#FFFFFF` | `#A15A33` | `#874A29` | `#FFFFFF` / `#3A332B` / `#DBD4CA` | `#E8E4DD` / `#F0EDE8` | `#D6CFC5` | `#2B251E` | `#6B6358` |
 
-Input borders are slightly stronger than surface borders in the five new themes and are defined per theme in `src/lib/themes.ts` and `src/index.css`. The topbar of each new theme is a subtle translucent wash of the navigation color (`backdrop-blur`-ready). Business status colors are intentionally shared by all six themes:
+Each new theme also defines an active-nav tint (`#D5EAE7` / `#DCE8F8` / `#DCE9DB` / `#E4E6F6` / `#EDE2D7`), a hover background, a selected-table-row tint, an input focus ring at 25% primary opacity, and per-theme success/error/info toast surfaces. All five use light chrome navigation (tinted navbar with dark text) rather than dark sidebars.
+
+Business status colors are intentionally identical across the five new themes; the protected default theme keeps its original (legacy) status palette:
 
 | Status | Background | Text | Border |
 |--------|------------|------|--------|
-| Warning / Low Stock | `#FEF3C7` | `#92400E` | `#FCD34D` |
-| Information / On Order | `#DBEAFE` | `#1E40AF` | `#93C5FD` |
-| In Stock | `#DCFCE7` | `#166534` | `#86EFAC` |
-| Out of Stock | `#FEE2E2` | `#991B1B` | `#FCA5A5` |
+| In Stock | `#ECFAF0` | `#11693D` | `#BBE6CB` |
+| Warning / Low Stock | `#FEF6E7` | `#8A5A08` | `#F4DEAC` |
+| Out of Stock | `#FDF1F0` | `#A3302A` | `#F2C9C5` |
+| On Order / Information | `#EDF4FC` | `#1B5894` | `#C4DCF3` |
 
 Theme configuration lives in `src/lib/themes.ts`, the provider/selector in `src/components/theme/`, and the CSS custom properties in `src/index.css`. Shared UI components consume semantic tokens such as `bg-theme-primary`, `border-theme-border`, and `text-theme-text-muted`. The active theme also re-maps the existing Tailwind `indigo` (brand) and `slate` (neutral) scales, so older page-level utility classes inherit the theme automatically.
 
