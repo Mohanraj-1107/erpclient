@@ -14,6 +14,23 @@ export const supplierApi = {
     return data;
   },
 
+  listAll: async (): Promise<Supplier[]> => {
+    const size = 200;
+    const suppliers: Supplier[] = [];
+    let page = 0;
+
+    while (true) {
+      const { data } = await api.get<PageResponse<Supplier>>('/v1/suppliers', {
+        params: { page, size },
+      });
+      suppliers.push(...data.content);
+      if (data.last || data.content.length === 0) break;
+      page += 1;
+    }
+
+    return suppliers;
+  },
+
   get: async (supplierId: number): Promise<Supplier> => {
     const { data } = await api.get<Supplier>(`/v1/suppliers/${supplierId}`);
     return data;

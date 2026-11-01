@@ -21,7 +21,7 @@ export function FormSection({
       <div className="flex items-start gap-3 rounded-t-xl border-b border-theme-border/60 bg-theme-border/70 px-4 py-3.5 sm:px-5">
         <div
           className={cn(
-            'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100',
+            'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-theme-secondary text-theme-secondary-fg ring-1 ring-theme-border',
             iconClassName
           )}
         >

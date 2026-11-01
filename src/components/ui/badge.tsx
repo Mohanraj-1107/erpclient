@@ -8,7 +8,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const variants: Record<BadgeVariant, string> = {
-  default: 'bg-slate-100 text-slate-700 border-slate-200',
+  default: 'bg-theme-surface-hover text-theme-text border-theme-border',
   success:
     'bg-status-success text-status-success-fg border-status-success-border',
   warning:

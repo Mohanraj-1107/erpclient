@@ -27,14 +27,14 @@ export function AvatarDropdown({ onSignout }: { onSignout: () => void }) {
       </button>
 
       {open && (
-        <div className="animate-in fade-in zoom-in absolute right-0 z-50 mt-2 w-72 rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg shadow-slate-200/60 duration-150">
-          <div className="grid grid-cols-[14px_minmax(0,1fr)] items-center gap-2 rounded-lg bg-slate-50/80 px-3 py-2.5 ring-1 ring-slate-100">
-            <Mail className="h-3.5 w-3.5 text-slate-400" />
+        <div className="animate-in fade-in zoom-in absolute right-0 z-50 mt-2 w-72 rounded-xl border border-theme-border bg-theme-surface p-1.5 shadow-lg shadow-theme-overlay duration-150">
+          <div className="grid grid-cols-[14px_minmax(0,1fr)] items-center gap-2 rounded-lg bg-theme-surface-hover px-3 py-2.5 ring-1 ring-theme-border">
+            <Mail className="h-3.5 w-3.5 text-theme-text-muted" />
             {isLoading ? (
               <Skeleton className="h-3 w-40" />
             ) : (
               <p
-                className="min-w-0 truncate text-xs font-medium text-slate-600"
+                className="min-w-0 truncate text-xs font-medium text-theme-text"
                 title={orgEmail}
               >
                 {orgEmail || '—'}
@@ -47,7 +47,7 @@ export function AvatarDropdown({ onSignout }: { onSignout: () => void }) {
               setOpen(false);
               onSignout();
             }}
-            className="mt-1 grid w-full grid-cols-[14px_minmax(0,1fr)] items-center gap-2 rounded-lg px-3 py-2.5 text-left text-xs font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+            className="mt-1 grid w-full grid-cols-[14px_minmax(0,1fr)] items-center gap-2 rounded-lg px-3 py-2.5 text-left text-xs font-medium text-theme-text-muted transition-colors hover:bg-theme-surface-hover hover:text-theme-text"
           >
             <LogOut className="h-3.5 w-3.5" />
             <span className="truncate">Sign out</span>

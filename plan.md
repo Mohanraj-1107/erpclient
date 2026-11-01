@@ -38,6 +38,11 @@ This file tracks the frontend development plan, current status, and next steps f
 | State provider | ✅ Complete | TanStack Query `QueryClientProvider` in `main.tsx` |
 | Tailwind theme | ✅ Complete | `src/index.css` with ERP blue/slate color palette |
 | Login page | ✅ Complete | `src/pages/Login.tsx` — clean two-column layout, email/password fields, show/hide toggle, error alerts, loading state, auto-redirect on success |
+| Product module | ✅ Complete | List / Create / Edit with product catalogue and product lookups |
+| Inventory module | ✅ Complete | List / Low Stock / Stock adjust dialog |
+| Customer module | ✅ Complete | List / Create / Edit / View |
+| Supplier module | ✅ Complete | List / Create / Edit / View |
+| Purchase module | ✅ Complete | `src/types/purchase.ts`, `src/api/purchases.ts`, `src/components/purchases/`, `src/components/forms/PurchaseForm.tsx`, `src/pages/purchases/` — List (search + status filter), Create (multi-item with tax/discount + live totals), View (items table, summary, Complete/Cancel/Delete with ConfirmDialog). Backend payload: `{ supplierId, items: [{ productId, quantity, unitPrice, taxRate, discountRate }] }` |
 
 ### Files in `src/`
 
@@ -294,6 +299,6 @@ npm run lint
 
 ---
 
-*Document version: 1.0*  
-*Last updated: 2026-10-23*  
+*Document version: 1.1*  
+*Last updated: 2026-10-31*  
 *Scope: Frontend only*

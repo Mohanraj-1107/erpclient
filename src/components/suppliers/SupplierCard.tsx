@@ -64,7 +64,7 @@ export function SupplierCard({
   const address = getShortAddress(supplier);
 
   return (
-    <Card className="group flex flex-col overflow-hidden border-slate-200/80 transition-all hover:-translate-y-0.5 hover:border-indigo-200/70 hover:shadow-md hover:shadow-indigo-100/50">
+    <Card className="group flex flex-col overflow-hidden border-slate-200/80 transition-all hover:-translate-y-0.5 hover:border-theme-primary-hover/40 hover:shadow-md hover:shadow-theme-primary-soft">
       <div
         className="h-1 w-full"
         style={{
@@ -86,7 +86,7 @@ export function SupplierCard({
 
         <div className="relative flex items-start gap-3">
           <div
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border text-xs font-bold shadow-sm ring-2 ring-white transition-transform duration-200 group-hover:scale-105"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border text-xs font-bold"
             style={{
               color,
               borderColor: color,
@@ -115,14 +115,14 @@ export function SupplierCard({
         <div className="relative mt-4 space-y-2.5">
           <DetailRow
             icon={<Phone className="h-3.5 w-3.5" />}
-            tone="bg-emerald-50 text-emerald-600 ring-emerald-100"
+            tone="bg-theme-secondary text-theme-secondary-fg ring-1 ring-theme-border"
           >
             {supplier.mobileNo || '—'}
           </DetailRow>
 
           <DetailRow
             icon={<MapPin className="h-3.5 w-3.5" />}
-            tone="bg-indigo-50 text-indigo-600 ring-indigo-100"
+            tone="bg-theme-secondary text-theme-secondary-fg ring-1 ring-theme-border"
           >
             <span className="line-clamp-2" title={address.text}>
               {address.text}
@@ -136,7 +136,7 @@ export function SupplierCard({
 
           <DetailRow
             icon={<FileBadge className="h-3.5 w-3.5" />}
-            tone="bg-amber-50 text-amber-600 ring-amber-100"
+            tone="bg-theme-secondary text-theme-secondary-fg ring-1 ring-theme-border"
           >
             <span className="text-slate-400">GST</span>{' '}
             <span className="font-mono text-[11px] uppercase tracking-wide text-slate-600">
@@ -151,7 +151,7 @@ export function SupplierCard({
           variant="ghost"
           size="sm"
           onClick={onView}
-          className="gap-1.5 px-2 text-slate-600 hover:bg-indigo-50 hover:text-indigo-600"
+          className="gap-1.5 px-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           aria-label={`View ${supplier.supplierName}`}
           title="View supplier"
         >
@@ -162,7 +162,7 @@ export function SupplierCard({
           variant="ghost"
           size="sm"
           onClick={onEdit}
-          className="gap-1.5 px-2 text-slate-600 hover:bg-indigo-50 hover:text-indigo-600"
+          className="gap-1.5 px-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
           aria-label={`Edit ${supplier.supplierName}`}
           title="Edit supplier"
         >
@@ -188,10 +188,10 @@ export function SupplierCard({
 export function SupplierCardSkeleton() {
   return (
     <Card className="flex flex-col overflow-hidden">
-      <Skeleton className="h-1 w-full rounded-none bg-indigo-100" />
+      <Skeleton className="h-1 w-full rounded-none bg-slate-200" />
       <div className="p-4">
         <div className="flex items-start gap-3">
-          <Skeleton className="h-10 w-10 shrink-0 rounded-lg bg-indigo-50" />
+          <Skeleton className="h-10 w-10 shrink-0 rounded-lg bg-theme-surface-muted" />
           <div className="flex-1 space-y-2">
             <Skeleton className="h-3.5 w-32" />
             <Skeleton className="h-3 w-44" />
@@ -199,7 +199,7 @@ export function SupplierCardSkeleton() {
         </div>
 
         <div className="mt-4 space-y-2.5">
-          {['bg-emerald-50', 'bg-indigo-50', 'bg-amber-50'].map((tone) => (
+          {['bg-theme-surface-muted', 'bg-theme-surface-muted', 'bg-theme-surface-muted'].map((tone) => (
             <div key={tone} className="flex items-center gap-2.5">
               <Skeleton className={cn('h-6 w-6 shrink-0 rounded-md', tone)} />
               <Skeleton className="h-3 w-28" />

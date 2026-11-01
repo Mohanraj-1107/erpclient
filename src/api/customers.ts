@@ -7,6 +7,23 @@ import type {
 } from '@/types/customer';
 
 export const customerApi = {
+  listAll: async (): Promise<Customer[]> => {
+    const size = 200;
+    const customers: Customer[] = [];
+    let page = 0;
+
+    while (true) {
+      const { data } = await api.get<PageResponse<Customer>>('/v1/customers', {
+        params: { page, size },
+      });
+      customers.push(...data.content);
+      if (data.last || data.content.length === 0) break;
+      page += 1;
+    }
+
+    return customers;
+  },
+
   list: async (page = 0, size = 20): Promise<PageResponse<Customer>> => {
     const { data } = await api.get<PageResponse<Customer>>('/v1/customers', {
       params: { page, size },

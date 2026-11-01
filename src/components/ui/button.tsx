@@ -18,9 +18,9 @@ const variants: Record<ButtonVariant, string> = {
   secondary:
     'bg-theme-secondary text-theme-secondary-fg outline outline-1 -outline-offset-1 outline-theme-secondary-border hover:bg-theme-secondary-hover focus:ring-theme-muted-ring',
   outline:
-    'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 focus:ring-slate-300 shadow-2xs',
+    'border border-theme-border bg-theme-surface text-theme-text hover:bg-theme-surface-hover focus:ring-theme-muted-ring shadow-2xs',
   ghost:
-    'text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-300',
+    'text-theme-text-muted hover:bg-theme-surface-hover hover:text-theme-text focus:ring-theme-muted-ring',
   destructive: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-xs',
 };
 

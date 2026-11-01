@@ -78,7 +78,7 @@ export default function SupplierList() {
       <Breadcrumb
         items={[{ label: 'Dashboard', to: '/dashboard' }, { label: 'Suppliers' }]}
         icon={<Truck className="h-4 w-4" />}
-        className="border-indigo-100/80 bg-gradient-to-r from-indigo-50 via-white to-emerald-50 shadow-sm shadow-indigo-100/40"
+        className="border-slate-200/80 bg-slate-200/70 shadow-xs backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between"
         action={
           <>
             {data && (
@@ -97,19 +97,19 @@ export default function SupplierList() {
         }
       />
 
-      <Card className="relative overflow-hidden border-indigo-100/80 bg-gradient-to-r from-indigo-50/80 via-white to-emerald-50/60 p-4 shadow-sm shadow-indigo-100/40">
+      <Card className="relative overflow-hidden border-slate-200/80 bg-theme-surface p-4 shadow-xs">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-10 -top-12 h-32 w-32 rounded-full bg-indigo-200/20 blur-2xl"
+          className="pointer-events-none absolute -right-10 -top-12 h-32 w-32 rounded-full bg-theme-primary/10 blur-2xl"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-12 left-1/3 h-24 w-24 rounded-full bg-emerald-200/20 blur-2xl"
+          className="pointer-events-none absolute -bottom-12 left-1/3 h-24 w-24 rounded-full bg-theme-primary/10 blur-2xl"
         />
 
         <div className="relative flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex w-full items-center gap-3 sm:max-w-md">
-            <div className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-100 text-indigo-600 ring-1 ring-indigo-200 sm:flex">
+            <div className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-theme-secondary text-theme-secondary-fg ring-1 ring-theme-border sm:flex">
               <Truck className="h-4 w-4" />
             </div>
 
@@ -164,7 +164,7 @@ export default function SupplierList() {
           {getApiErrorMessage(error, 'Failed to load suppliers.')}
         </Alert>
       ) : filtered.length === 0 ? (
-        <Card className="overflow-hidden border-indigo-100/70 bg-gradient-to-br from-indigo-50/50 via-white to-emerald-50/40">
+        <Card className="overflow-hidden border-slate-200/80 bg-theme-surface shadow-xs">
           <EmptyState
             title={suppliers.length === 0 ? 'No suppliers yet' : 'No matching suppliers'}
             description={
@@ -202,7 +202,7 @@ export default function SupplierList() {
       )}
 
       {data && data.totalElements > 0 && !isLoading && !isError && (
-        <Card className="overflow-hidden border-indigo-100/70 bg-gradient-to-r from-white via-slate-50/60 to-indigo-50/40 shadow-sm shadow-indigo-100/30">
+        <Card className="overflow-hidden border-slate-200/80 bg-theme-surface shadow-xs">
           <Pagination
             page={data.number}
             size={data.size}

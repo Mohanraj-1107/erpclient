@@ -218,7 +218,7 @@ export function SupplierForm({
         icon={<Truck className="h-4 w-4" />}
         title="Supplier information"
         description="Contact details used on purchase orders and bills."
-        iconClassName="bg-indigo-100 text-indigo-600 ring-indigo-200"
+        iconClassName="bg-theme-secondary text-theme-secondary-fg ring-1 ring-theme-border"
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <FormField
@@ -306,17 +306,17 @@ export function SupplierForm({
         icon={<MapPin className="h-4 w-4" />}
         title="Addresses"
         description="Add one or more billing or shipping addresses for this supplier."
-        iconClassName="bg-emerald-50 text-emerald-600 ring-emerald-100"
+        iconClassName="bg-theme-secondary text-theme-secondary-fg ring-1 ring-theme-border"
       >
         <div className="space-y-3">
           {form.addresses.map((address, index) => (
             <div
               key={index}
-              className="rounded-lg border border-indigo-100/80 border-l-4 border-l-indigo-300 bg-gradient-to-br from-indigo-50/40 via-white to-slate-50/70 p-3.5"
+              className="rounded-lg border border-theme-border bg-theme-surface-muted p-3.5"
             >
               <div className="mb-3 flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-indigo-100 text-indigo-600 ring-1 ring-indigo-200">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-theme-secondary text-theme-secondary-fg ring-1 ring-theme-border">
                     <MapPin className="h-3.5 w-3.5" />
                   </span>
                   Address {index + 1}
@@ -469,7 +469,7 @@ export function SupplierForm({
             size="sm"
             onClick={addAddress}
             disabled={submitting}
-            className="gap-1.5 border-indigo-200 text-indigo-600 hover:bg-indigo-50"
+            className="gap-1.5 border-slate-200 text-slate-600 hover:bg-slate-100"
           >
             <Plus className="h-3.5 w-3.5" />
             Add another address
@@ -477,7 +477,7 @@ export function SupplierForm({
         </div>
       </FormSection>
 
-      <div className="flex flex-col-reverse items-stretch gap-2 rounded-xl border border-slate-200/80 bg-gradient-to-r from-slate-100/90 via-white to-indigo-50/70 p-4 shadow-xs backdrop-blur-sm sm:flex-row sm:items-center sm:justify-end">
+      <div className="flex flex-col-reverse items-stretch gap-2 rounded-xl border border-theme-border bg-theme-surface-muted p-4 shadow-xs sm:flex-row sm:items-center sm:justify-end">
         <Button variant="outline" onClick={onCancel} disabled={submitting}>
           Cancel
         </Button>

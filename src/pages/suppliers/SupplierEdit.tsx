@@ -106,7 +106,7 @@ export default function SupplierEdit() {
           { label: supplier?.supplierName ?? 'Edit Supplier' },
         ]}
         icon={<Pencil className="h-4 w-4" />}
-        className="border-indigo-100/80 bg-gradient-to-r from-indigo-50 via-white to-emerald-50 shadow-sm shadow-indigo-100/40"
+        className="border-slate-200/80 bg-slate-200/70 shadow-xs backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between"
         action={
           <Button
             variant="outline"

@@ -22,7 +22,7 @@ export function FormField({
 }: FormFieldProps) {
   return (
     <div className={cn('space-y-1.5', className)}>
-      <label htmlFor={htmlFor} className="block text-xs font-medium text-slate-700">
+      <label htmlFor={htmlFor} className="block text-xs font-medium text-theme-text">
         {label}
         {required && <span className="ml-0.5 text-status-error-fg">*</span>}
       </label>

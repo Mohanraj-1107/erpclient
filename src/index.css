@@ -556,6 +556,18 @@
   animation: fade-in-up 0.3s ease-out both;
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.18s ease-out both;
+}
+
 @keyframes dropdown-in {
   from {
     opacity: 0;
@@ -600,6 +612,7 @@
   .animate-toast-in,
   .animate-toast-progress,
   .animate-fade-in-up,
+  .animate-fade-in,
   .animate-dropdown-in,
   .animate-overlay-in,
   .animate-dialog-in {

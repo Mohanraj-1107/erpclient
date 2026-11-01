@@ -34,7 +34,7 @@ export default function SupplierCreate() {
           { label: 'New Supplier' },
         ]}
         icon={<Truck className="h-4 w-4" />}
-        className="border-indigo-100/80 bg-gradient-to-r from-indigo-50 via-white to-emerald-50 shadow-sm shadow-indigo-100/40"
+        className="border-slate-200/80 bg-slate-200/70 shadow-xs backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between"
         action={
           <Button
             variant="outline"
@@ -60,7 +60,7 @@ export default function SupplierCreate() {
         onCancel={() => navigate('/suppliers')}
       />
 
-      <div className="flex items-center gap-2 rounded-lg border border-indigo-100 bg-gradient-to-r from-indigo-50/80 via-white to-emerald-50/50 px-3.5 py-2.5 text-xs text-indigo-700">
+      <div className="flex items-center gap-2 rounded-lg border border-theme-border bg-theme-surface-muted px-3.5 py-2.5 text-xs text-theme-text-muted">
         <Info className="h-3.5 w-3.5 shrink-0" />
         Supplier emails must be unique within your organization.
       </div>
