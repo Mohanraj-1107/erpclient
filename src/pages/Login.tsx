@@ -1,9 +1,10 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { useState, useEffect, type ChangeEvent, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { Building2, Eye, EyeOff, Lock, Mail, ShieldCheck } from 'lucide-react';
 import api from '@/api/axiosInstance';
-import { setStoredOrgId } from '@/lib/authStorage';
+import { refreshSession } from '@/api/axiosInstance';
+import { getStoredOrgId, setStoredOrgId, clearStoredOrgId } from '@/lib/authStorage';
 import { getApiErrorMessage } from '@/lib/utils';
 import { Alert } from '@/components/common/Alert';
 import { ThemeSwitcher } from '@/components/theme/ThemeSwitcher';
@@ -32,6 +33,29 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(getStoredOrgId() !== null);
+
+  useEffect(() => {
+    // No stored org id means no existing session; show the login form right away.
+    if (!checkingSession) return;
+
+    // An org id is already stored, so a session cookie may still be valid.
+    // Validate it via /v1/refresh: on success redirect to the dashboard,
+    // on failure clear the stale session and show the login form.
+    void refreshSession()
+      .then((orgId) => {
+        if (orgId != null) {
+          navigate('/dashboard', { replace: true });
+        } else {
+          clearStoredOrgId();
+          setCheckingSession(false);
+        }
+      })
+      .catch(() => {
+        clearStoredOrgId();
+        setCheckingSession(false);
+      });
+  }, [checkingSession, navigate]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -100,23 +124,29 @@ export default function Login() {
 
       {/* Right login form */}
       <div className="flex flex-1 items-center justify-center px-4 py-10">
-        <div className="w-full max-w-md">
-          <div className="mx-auto mb-8 text-center">
-            <div className="mb-4 flex items-center justify-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-theme-primary text-theme-primary-fg shadow-sm shadow-theme-primary-soft">
-                <Building2 className="h-5 w-5" />
-              </div>
-              <span className="text-xl font-bold tracking-tight text-slate-900">
-                ERP Core
-              </span>
-            </div>
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">Sign in</h1>
-            <p className="mt-1 text-sm text-slate-500">
-              Enter your organization credentials below
-            </p>
+        {checkingSession ? (
+          <div className="w-full max-w-md mx-auto text-center">
+            <Spinner className="h-6 w-6 text-theme-primary" />
+            <p className="mt-3 text-sm text-slate-600">Signing you in...</p>
           </div>
+        ) : (
+          <div className="w-full max-w-md">
+            <div className="mx-auto mb-8 text-center">
+              <div className="mb-4 flex items-center justify-center gap-2.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-theme-primary text-theme-primary-fg shadow-sm shadow-theme-primary-soft">
+                  <Building2 className="h-5 w-5" />
+                </div>
+                <span className="text-xl font-bold tracking-tight text-slate-900">
+                  ERP Core
+                </span>
+              </div>
+              <h1 className="text-2xl font-bold tracking-tight text-slate-900">Sign in</h1>
+              <p className="mt-1 text-sm text-slate-500">
+                Enter your organization credentials below
+              </p>
+            </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
             {error && <Alert tone="error">{error}</Alert>}
 
             <div className="space-y-1.5">
@@ -194,9 +224,13 @@ export default function Login() {
               Don&apos;t have an account?{' '}
               <a
                 href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/signup', { replace: false });
+                }}
                 className="font-medium text-indigo-600 transition-colors hover:text-indigo-700"
               >
-                Contact administrator
+                Sign up
               </a>
             </p>
           </form>
@@ -208,6 +242,7 @@ export default function Login() {
             </p>
           </div>
         </div>
+        )}
       </div>
     </div>
   );
