@@ -144,14 +144,20 @@ export default function AppLayout() {
             })}
           </nav>
 
-          <div className="mt-auto pt-6 pb-8 px-6 border-t border-theme-nav-border-subtle">
+          <div className="mt-auto pt-6 pb-8 px-6 border-t border-theme-nav-border-subtle bg-theme-nav/50">
             {!isSidebarCollapsed ? (
               <>
-                <p className="text-xs text-theme-nav-muted font-medium uppercase tracking-wider">ERP Core v0.0.1</p>
-                <p className="text-xs text-theme-nav-subtle mt-0.5">Organization-centric ERP</p>
+                <p className="text-[9px] font-light text-theme-nav-muted uppercase tracking-tighter">
+                  ERP Core v0.0.1
+                </p>
+                <p className="text-[9px] font-normal text-theme-nav-subtle mt-0.5 tracking-tight">
+                  Organization-centric ERP
+                </p>
               </>
             ) : (
-              <div className="flex justify-center text-[10px] font-mono text-theme-nav-subtle">EC</div>
+              <div className="flex justify-center text-[9px] font-mono text-theme-nav-subtle">
+                EC
+              </div>
             )}
           </div>
         </div>
